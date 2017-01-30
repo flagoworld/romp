@@ -29,7 +29,7 @@ class GameEditor: EventSubscriber {
     
     var selectedEntities: [GKEntity] = []
     
-    var mouseDownEvent: MouseEvent = MouseEvent(action: .down, modifiers: MouseEventModifiers(), location: CGPoint.zero)
+    var mouseDownEvent: MouseEvent = MouseEvent(action: .down, button: .left, modifiers: MouseEventModifiers(), location: CGPoint.zero)
     var mouseDragged: Bool = false
     
     init(_ game: Game) {
@@ -64,7 +64,16 @@ class GameEditor: EventSubscriber {
         
         if selectedEntities.count == 0 {
         
-            game.spawn(entity: MapObject(definition: MapObjectDefinition(spriteImageName: "grass.png", physicsMode: "")), at:mouseEvent.location)
+            if mouseEvent.modifiers.contains(.shift) {
+            
+                game.spawn(entity: MapObject(definition: MapObjectDefinition(spriteImageName: "grass.png", physicsMode: 2)), at:mouseEvent.location)
+            
+            } else {
+            
+                game.spawn(entity: MapObject(definition: MapObjectDefinition(spriteImageName: "grass.png", physicsMode: 1)), at:mouseEvent.location)
+            
+            }
+            
             selectEntity(mouseEvent)
         
         }
@@ -82,7 +91,7 @@ class GameEditor: EventSubscriber {
     func mouseUp(mouseEvent: MouseEvent) {
     
         // Clear previous mouse info
-        mouseDownEvent = MouseEvent(action: .down, modifiers: MouseEventModifiers(), location: CGPoint.zero)
+        mouseDownEvent = MouseEvent(action: .down, button: .left, modifiers: MouseEventModifiers(), location: CGPoint.zero)
         mouseDragged = false
         
     }

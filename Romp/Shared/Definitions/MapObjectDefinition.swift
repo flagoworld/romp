@@ -11,9 +11,9 @@ import Foundation
 class MapObjectDefinition {
 
     var spriteImageName: String
-    var physicsMode: String
+    var physicsMode: UInt32
     
-    init(spriteImageName: String, physicsMode: String) {
+    init(spriteImageName: String, physicsMode: UInt32) {
     
         self.spriteImageName = spriteImageName
         self.physicsMode = physicsMode

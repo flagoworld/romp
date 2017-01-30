@@ -753,7 +753,7 @@
 				DEVELOPMENT_TEAM = M83D9L7F25;
 				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.idevgames.Romp;
 				PRODUCT_NAME = Romp;
 				SDKROOT = macosx;
@@ -770,7 +770,7 @@
 				DEVELOPMENT_TEAM = M83D9L7F25;
 				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.idevgames.Romp;
 				PRODUCT_NAME = Romp;
 				SDKROOT = macosx;

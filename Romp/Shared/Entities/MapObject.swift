@@ -21,6 +21,21 @@ class MapObject: GKEntity {
         let sprite = Sprite(texture: texture)
         let editable = Editable()
         
+        if definition.physicsMode > 0 {
+        
+            let physicsBody = SKPhysicsBody(rectangleOf: sprite.node.size)
+            
+            if definition.physicsMode == 1 {
+            
+                physicsBody.isDynamic = false
+                
+            
+            }
+            
+            sprite.node.physicsBody = physicsBody
+            
+        }
+        
         addComponent(sprite)
         addComponent(editable)
     

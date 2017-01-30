@@ -17,8 +17,6 @@ class Sprite : GKComponent {
     
         node = SKSpriteNode(texture: texture, size: texture.size());
         super.init()
-        
-        // TODO: Set up SKPhysicsBody
     
     }
     

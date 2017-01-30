@@ -41,6 +41,11 @@ class GameScene: SKScene {
         // For now, start up in editor mode
         game.state?.enter(GameStateEditing.self)
         
+        self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.80665);
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame);
+        
+        self.physicsBody?.categoryBitMask = CollisionCategory.inanimate
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -92,25 +97,95 @@ extension GameScene {
 
     override func mouseDown(with event: NSEvent) {
     
-        let mouseEvent = MouseEvent(action: .down, modifiers: MouseEventModifiers(), location: event.location(in: self))
+        let button = mouseButton(NSEvent.pressedMouseButtons())
+        let modifiers = mouseModifiers(NSEvent.modifierFlags())
+        let mouseEvent = MouseEvent(action: .down, button: button, modifiers: modifiers, location: event.location(in: self))
+        
         game.eventCenter.send(mouseEvent)
         
     }
     
     override func mouseDragged(with event: NSEvent) {
         
-        let mouseEvent = MouseEvent(action: .drag, modifiers: MouseEventModifiers(), location: event.location(in: self))
+        let button = mouseButton(NSEvent.pressedMouseButtons())
+        let modifiers = mouseModifiers(NSEvent.modifierFlags())
+        let mouseEvent = MouseEvent(action: .drag, button: button, modifiers: modifiers, location: event.location(in: self))
         game.eventCenter.send(mouseEvent)
         
     }
     
     override func mouseUp(with event: NSEvent) {
-    
-        let mouseEvent = MouseEvent(action: .up, modifiers: MouseEventModifiers(), location: event.location(in: self))
+        
+        let button = mouseButton(NSEvent.pressedMouseButtons())
+        let modifiers = mouseModifiers(NSEvent.modifierFlags())
+        let mouseEvent = MouseEvent(action: .up, button: button, modifiers: modifiers, location: event.location(in: self))
         game.eventCenter.send(mouseEvent)
         
     }
+    
+    func mouseButton(_ pressedMouseButtons: Int) -> MouseEventButton {
+
+        if (pressedMouseButtons & (1 << 0)) > 0 {
+        
+            return .left
+        
+        }
+        
+        if (pressedMouseButtons & (1 << 1)) > 0 {
+        
+            return .right
+        
+        }
+        
+        if (pressedMouseButtons & (1 << 2)) > 0 {
+        
+            return .middle
+        
+        }
+        
+        return .left
+
+    }
+
+    func mouseModifiers(_ modifierFlags: NSEventModifierFlags) -> MouseEventModifiers {
+    
+        var modifiers = MouseEventModifiers()
+        
+        if modifierFlags.contains(.capsLock) {
+            
+            modifiers.insert(MouseEventModifiers.capsLock)
+            
+        }
+        
+        if modifierFlags.contains(.shift) {
+            
+            modifiers.insert(MouseEventModifiers.shift)
+            
+        }
+        
+        if modifierFlags.contains(.control) {
+            
+            modifiers.insert(MouseEventModifiers.control)
+            
+        }
+        
+        if modifierFlags.contains(.option) {
+            
+            modifiers.insert(MouseEventModifiers.option)
+            
+        }
+        
+        if modifierFlags.contains(.command) {
+            
+            modifiers.insert(MouseEventModifiers.command)
+            
+        }
+        
+        return modifiers
+    
+    }
 
 }
+
 #endif
 

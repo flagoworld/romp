@@ -6,6 +6,13 @@
 //  Copyright © 2017 iDevGames. All rights reserved.
 //
 
+struct CollisionCategory {
+
+    static let inanimate: UInt32 = 1
+    static let animate: UInt32 = 2
+
+}
+
 struct ComponentSystems {
 
     let editable = GKComponentSystem(componentClass: Editable.self)
