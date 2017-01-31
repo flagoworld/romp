@@ -17,22 +17,15 @@ class GameStateEditing: GameState {
     }
     
     override func didEnter(from previousState: GKState?) {
-    
-        if let editor = game.editor {
         
-            editor.begin()
-        
-        }
+        game.scene(game.scenes!.game)
+        beginGameMode(GameModeEditor(game))
         
     }
     
     override func willExit(to nextState: GKState) {
         
-        if let editor = game.editor {
-        
-            editor.end()
-        
-        }
+        endGameMode()
         
     }
 

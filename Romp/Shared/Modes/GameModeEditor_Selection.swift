@@ -9,7 +9,7 @@
 import SceneKit
 import GameplayKit
 
-extension GameEditor {
+extension GameModeEditor {
 
     func selectEntity(_ mouseEvent: MouseEvent) {
     

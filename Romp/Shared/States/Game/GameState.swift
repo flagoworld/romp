@@ -11,12 +11,31 @@ import GameplayKit
 class GameState: GKState {
     
     let game: Game
+    private(set) var gameMode: GameMode?
     
     init(_ game: Game) {
     
         self.game = game
+        
         super.init()
         
+    }
+    
+    func beginGameMode(_ gameMode: GameMode) {
+    
+        self.gameMode = gameMode
+        gameMode.begin()
+    
+    }
+    
+    func endGameMode() {
+    
+        if let gameMode = self.gameMode {
+        
+            gameMode.end()
+        
+        }
+    
     }
     
 }

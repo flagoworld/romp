@@ -6,6 +6,9 @@
 //  Copyright © 2017 iDevGames. All rights reserved.
 //
 
+import GameplayKit
+import SceneKit
+
 struct CollisionCategory {
 
     static let inanimate: UInt32 = 1
@@ -20,19 +23,35 @@ struct ComponentSystems {
 
 }
 
-import GameplayKit
+class GameScenes {
+
+    let game: GameScene
+    
+    init(_ game: Game) {
+    
+        self.game = GameScene.newScene(game)
+    
+    }
+
+}
 
 class Game {
-    var scene: SKScene?
+
+    // View and scenes
+    var view: SKView?
+    var scenes: GameScenes?
+    private var activeScene: SKScene?
+    
     var entities: [GKEntity] = []
-    var state: GKStateMachine?
-    var editor: GameEditor?
+    private var state: GKStateMachine?
     
     let eventCenter = EventCenter()
     
     let componentSystems = ComponentSystems()
     
     init() {
+        
+        scenes = GameScenes(self)
         
         state = GKStateMachine(states: [
             GameStateMenu(self),
@@ -42,8 +61,19 @@ class Game {
             GameStatePaused(self)
         ])
         
-        editor = GameEditor(self)
-        
+    }
+    
+    func scene(_ scene: SKScene) {
+    
+        activeScene = scene
+        view?.presentScene(scene)
+    
+    }
+    
+    func state(_ stateClass: Swift.AnyClass) {
+    
+        self.state?.enter(stateClass)
+    
     }
     
     func spawn(entity: GKEntity, at: CGPoint) {
@@ -53,12 +83,12 @@ class Game {
         
         
         // Sprite node
-        if let scene = self.scene {
+        if let scene = self.activeScene {
         
             if let component = entity.component(ofType: Sprite.self) {
             
-                scene.addChild(component.node)
                 component.node.position = at
+                scene.addChild(component.node)
             
             }
         

@@ -1,125 +1,92 @@
 //
-//  GameScene.swift
+//  Scene.swift
 //  Romp
 //
-//  Created by Ryan Layne on 1/26/17.
+//  Created by Ryan Layne on 1/30/17.
 //  Copyright © 2017 iDevGames. All rights reserved.
 //
 
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class Scene: SKScene {
+
+    var game: Game?
     
-    let game: Game = Game()
-    
-    class func newGameScene() -> GameScene {
+    class func newScene(_ game: Game) -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
-        guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
-            print("Failed to load GameScene.sks")
+        
+        let sceneName = self.sceneName()
+        
+        guard let scene = SKScene(fileNamed: sceneName) as? GameScene else {
+            print("Failed to load \(sceneName).sks")
             abort()
         }
         
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFill
         
+        scene.game = game
+        
         return scene
     }
     
-    override func didMove(to view: SKView) {
-        self.setUpScene()
+    class func sceneName() -> String {
+    
+        return "Noname"
+    
     }
     
+    override func didMove(to view: SKView) {
     
-    // Game on!
-    
-    func setUpScene() {
-    
-        
-        game.scene = self
-        
-        // For now, start up in editor mode
-        game.state?.enter(GameStateEditing.self)
-        
-        self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.80665);
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame);
-        
-        self.physicsBody?.categoryBitMask = CollisionCategory.inanimate
+        self.setUpScene()
         
     }
     
     override func update(_ currentTime: TimeInterval) {
     
-        game.update(currentTime)
+        game?.update(currentTime)
         
     }
+    
+    func setUpScene() {
+    
+        // Override
+    
+    }
+
 }
 
-#if os(iOS) || os(tvOS)
-// Touch-based event handling
-extension GameScene {
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            
-        }
-        
-        for t in touches {
-            
-        }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches {
-            
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches {
-            
-        }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches {
-            
-        }
-    }
-    
-   
-}
-#endif
 
 #if os(OSX)
-// Mouse-based event handling
-extension GameScene {
+// Mouse events
+extension Scene {
 
-    override func mouseDown(with event: NSEvent) {
+    override open func mouseDown(with event: NSEvent) {
     
         let button = mouseButton(NSEvent.pressedMouseButtons())
         let modifiers = mouseModifiers(NSEvent.modifierFlags())
-        let mouseEvent = MouseEvent(action: .down, button: button, modifiers: modifiers, location: event.location(in: self))
+        let mouseEvent = MouseEvent(action: .down, button: button, modifiers: modifiers, location: event.location(in: self.scene!))
         
-        game.eventCenter.send(mouseEvent)
+        game?.eventCenter.send(mouseEvent)
         
     }
     
-    override func mouseDragged(with event: NSEvent) {
+    override open func mouseDragged(with event: NSEvent) {
         
         let button = mouseButton(NSEvent.pressedMouseButtons())
         let modifiers = mouseModifiers(NSEvent.modifierFlags())
-        let mouseEvent = MouseEvent(action: .drag, button: button, modifiers: modifiers, location: event.location(in: self))
-        game.eventCenter.send(mouseEvent)
+        let mouseEvent = MouseEvent(action: .drag, button: button, modifiers: modifiers, location: event.location(in: self.scene!))
+        game?.eventCenter.send(mouseEvent)
         
     }
     
-    override func mouseUp(with event: NSEvent) {
+    override open func mouseUp(with event: NSEvent) {
         
         let button = mouseButton(NSEvent.pressedMouseButtons())
         let modifiers = mouseModifiers(NSEvent.modifierFlags())
-        let mouseEvent = MouseEvent(action: .up, button: button, modifiers: modifiers, location: event.location(in: self))
-        game.eventCenter.send(mouseEvent)
+        let mouseEvent = MouseEvent(action: .up, button: button, modifiers: modifiers, location: event.location(in: self.scene!))
+        game?.eventCenter.send(mouseEvent)
         
     }
     
@@ -186,6 +153,39 @@ extension GameScene {
     }
 
 }
-
 #endif
 
+#if os(iOS) || os(tvOS)
+// Touch-based event handling
+extension Scene {
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let label = self.label {
+            
+        }
+        
+        for t in touches {
+            
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches {
+            
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches {
+            
+        }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches {
+            
+        }
+    }
+
+}
+#endif

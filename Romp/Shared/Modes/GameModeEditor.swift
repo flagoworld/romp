@@ -21,7 +21,7 @@ enum EditingMode {
     
 }
 
-class GameEditor: EventSubscriber {
+class GameModeEditor: GameMode, EventSubscriber {
 
     let game: Game
     
@@ -41,13 +41,13 @@ class GameEditor: EventSubscriber {
     
 // MARK: Begin/End editing
     
-    func begin() {
+    override func begin() {
     
         game.eventCenter.subscribe(self)
     
     }
     
-    func end() {
+    override func end() {
     
         game.eventCenter.unsubscribe(self)
     

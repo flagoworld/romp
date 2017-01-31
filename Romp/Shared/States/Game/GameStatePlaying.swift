@@ -9,7 +9,25 @@
 import GameplayKit
 
 class GameStatePlaying: GameState {
-
     
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
+    
+        return true
+        
+    }
+    
+    override func didEnter(from previousState: GKState?) {
+        
+        game.scene(game.scenes!.game)
+    
+        
+        
+    }
+    
+    override func willExit(to nextState: GKState) {
+        
+        
+        
+    }
 
 }
