@@ -21,9 +21,7 @@ enum EditingMode {
     
 }
 
-class GameModeEditor: GameMode, EventSubscriber {
-
-    let game: Game
+class GameSceneEditor: GameScene {
     
     let editingMode: EditingMode = .interact
     
@@ -32,31 +30,31 @@ class GameModeEditor: GameMode, EventSubscriber {
     var mouseDownEvent: MouseEvent = MouseEvent(action: .down, button: .left, modifiers: MouseEventModifiers(), location: CGPoint.zero)
     var mouseDragged: Bool = false
     
-    init(_ game: Game) {
     
-        self.game = game
-        
+    override class var sceneName: String {
+    
+        return "GameSceneEditor"
+    
     }
-    
     
 // MARK: Begin/End editing
     
     override func begin() {
     
-        game.eventCenter.subscribe(self)
+        super.begin()
     
     }
     
     override func end() {
     
-        game.eventCenter.unsubscribe(self)
+        super.end()
     
     }
     
     
 // MARK: Mouse input
     
-    func mouseDown(mouseEvent: MouseEvent) {
+    func mouseDownEvent(mouseEvent: MouseEvent) {
         
         mouseDownEvent = mouseEvent
         
@@ -66,11 +64,11 @@ class GameModeEditor: GameMode, EventSubscriber {
         
             if mouseEvent.modifiers.contains(.shift) {
             
-                game.spawn(entity: MapObject(definition: MapObjectDefinition(spriteImageName: "grass.png", physicsMode: 2)), at:mouseEvent.location)
+                game!.eventCenter.send(SpawnEvent(entity: MapObject(definition: MapObjectDefinition(spriteImageName: "grass.png", physicsMode: 2)), location: mouseEvent.location))
             
             } else {
             
-                game.spawn(entity: MapObject(definition: MapObjectDefinition(spriteImageName: "grass.png", physicsMode: 1)), at:mouseEvent.location)
+                game!.eventCenter.send(SpawnEvent(entity: MapObject(definition: MapObjectDefinition(spriteImageName: "grass.png", physicsMode: 1)), location: mouseEvent.location))
             
             }
             
@@ -80,7 +78,7 @@ class GameModeEditor: GameMode, EventSubscriber {
         
     }
     
-    func mouseDrag(mouseEvent: MouseEvent) {
+    func mouseDragEvent(mouseEvent: MouseEvent) {
     
         mouseDragged = true
         
@@ -88,7 +86,7 @@ class GameModeEditor: GameMode, EventSubscriber {
         
     }
     
-    func mouseUp(mouseEvent: MouseEvent) {
+    func mouseUpEvent(mouseEvent: MouseEvent) {
     
         // Clear previous mouse info
         mouseDownEvent = MouseEvent(action: .down, button: .left, modifiers: MouseEventModifiers(), location: CGPoint.zero)
@@ -100,7 +98,9 @@ class GameModeEditor: GameMode, EventSubscriber {
     
 // MARK: EventSubscriber
     
-    func handleEvent(_ event: Event) {
+    override func handleEvent(_ event: Event) {
+        
+        super.handleEvent(event)
         
         switch event {
         
@@ -110,13 +110,13 @@ class GameModeEditor: GameMode, EventSubscriber {
                 switch mouseEvent.action {
                 
                     case .down:
-                        self.mouseDown(mouseEvent: mouseEvent)
+                        self.mouseDownEvent(mouseEvent: mouseEvent)
                     
                     case .drag:
-                        self.mouseDrag(mouseEvent: mouseEvent)
+                        self.mouseDragEvent(mouseEvent: mouseEvent)
                     
                     case .up:
-                        self.mouseUp(mouseEvent: mouseEvent)
+                        self.mouseUpEvent(mouseEvent: mouseEvent)
                 
                 }
         

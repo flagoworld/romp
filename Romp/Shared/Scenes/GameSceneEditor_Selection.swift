@@ -9,13 +9,13 @@
 import SceneKit
 import GameplayKit
 
-extension GameModeEditor {
+extension GameSceneEditor {
 
     func selectEntity(_ mouseEvent: MouseEvent) {
     
         deselectEntities()
         
-        for component in game.componentSystems.editable.components {
+        for component in game!.componentSystems.editable.components {
         
             if let entity = component.entity {
             

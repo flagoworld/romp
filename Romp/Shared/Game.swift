@@ -23,86 +23,37 @@ struct ComponentSystems {
 
 }
 
-class GameScenes {
+class Game: EventSubscriber {
 
-    let game: GameScene
-    
-    init(_ game: Game) {
-    
-        self.game = GameScene.newScene(game)
-    
-    }
-
-}
-
-class Game {
-
-    // View and scenes
-    var view: SKView?
-    var scenes: GameScenes?
-    private var activeScene: SKScene?
-    
-    var entities: [GKEntity] = []
-    private var state: GKStateMachine?
-    
     let eventCenter = EventCenter()
     
+    var entities: [GKEntity] = []
     let componentSystems = ComponentSystems()
     
     init() {
         
-        scenes = GameScenes(self)
+        eventCenter.subscribe(self)
         
-        state = GKStateMachine(states: [
-            GameStateMenu(self),
-            GameStatePlaying(self),
-            GameStateEditing(self),
-            GameStateLoading(self),
-            GameStatePaused(self)
-        ])
-        
-    }
-    
-    func scene(_ scene: SKScene) {
-    
-        activeScene = scene
-        view?.presentScene(scene)
-    
-    }
-    
-    func state(_ stateClass: Swift.AnyClass) {
-    
-        self.state?.enter(stateClass)
-    
-    }
-    
-    func spawn(entity: GKEntity, at: CGPoint) {
-        
-        // Add entity
-        entities.append(entity)
-        
-        
-        // Sprite node
-        if let scene = self.activeScene {
-        
-            if let component = entity.component(ofType: Sprite.self) {
-            
-                component.node.position = at
-                scene.addChild(component.node)
-            
-            }
-        
-        }
-        
-        
-        // Add components to systems
-        componentSystems.editable.addComponent(foundIn: entity);
-        componentSystems.sprite.addComponent(foundIn: entity);
     }
     
     func update(_ currentTime: TimeInterval) {
     
         componentSystems.sprite.update(deltaTime: currentTime)
         
+    }
+    
+    func handleEvent(_ event: Event) {
+    
+        if event is SpawnEvent {
+        
+            let spawnEvent = event as! SpawnEvent
+            
+            entities.append(spawnEvent.entity)
+            
+            componentSystems.editable.addComponent(foundIn: spawnEvent.entity)
+            componentSystems.sprite.addComponent(foundIn: spawnEvent.entity)
+        
+        }
+    
     }
 }

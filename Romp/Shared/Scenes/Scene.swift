@@ -9,18 +9,23 @@
 import SpriteKit
 import GameplayKit
 
-class Scene: SKScene {
+class Scene: SKScene, EventSubscriber {
 
     var game: Game?
+
+    class var sceneName: String {
     
-    class func newScene(_ game: Game) -> GameScene {
+        fatalError("Scene must be subclassed")
+    
+    }
+    
+    class func newScene(game: Game) -> Scene {
         // Load 'GameScene.sks' as an SKScene.
         
-        let sceneName = self.sceneName()
+        guard let scene: Scene = SKScene(fileNamed: sceneName) as? Scene else {
         
-        guard let scene = SKScene(fileNamed: sceneName) as? GameScene else {
-            print("Failed to load \(sceneName).sks")
-            abort()
+            fatalError("Failed to load \(sceneName).sks")
+            
         }
         
         // Set the scale mode to scale to fit the window
@@ -31,27 +36,60 @@ class Scene: SKScene {
         return scene
     }
     
-    class func sceneName() -> String {
+    init(game: Game) {
     
-        return "Noname"
+        super.init()
     
+        self.game = game
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+    
+        super.init(coder: aDecoder)
+        
     }
     
     override func didMove(to view: SKView) {
     
-        self.setUpScene()
+        begin()
+        print("\(view)")
         
     }
     
     override func update(_ currentTime: TimeInterval) {
     
-        game?.update(currentTime)
+        
         
     }
     
-    func setUpScene() {
+    func begin() {
     
-        // Override
+        game!.eventCenter.subscribe(self)
+    
+    }
+    
+    
+    func end() {
+    
+        game!.eventCenter.unsubscribe(self)
+    
+    }
+    
+    func handleEvent(_ event: Event) {
+    
+        if event is SpawnEvent {
+        
+            let spawnEvent = event as! SpawnEvent
+            
+            if let component = spawnEvent.entity.component(ofType: Sprite.self) {
+            
+                component.node.position = spawnEvent.location
+                addChild(component.node)
+            
+            }
+        
+        }
     
     }
 
@@ -68,7 +106,7 @@ extension Scene {
         let modifiers = mouseModifiers(NSEvent.modifierFlags())
         let mouseEvent = MouseEvent(action: .down, button: button, modifiers: modifiers, location: event.location(in: self.scene!))
         
-        game?.eventCenter.send(mouseEvent)
+        game!.eventCenter.send(mouseEvent)
         
     }
     
@@ -77,7 +115,7 @@ extension Scene {
         let button = mouseButton(NSEvent.pressedMouseButtons())
         let modifiers = mouseModifiers(NSEvent.modifierFlags())
         let mouseEvent = MouseEvent(action: .drag, button: button, modifiers: modifiers, location: event.location(in: self.scene!))
-        game?.eventCenter.send(mouseEvent)
+        game!.eventCenter.send(mouseEvent)
         
     }
     
@@ -86,7 +124,7 @@ extension Scene {
         let button = mouseButton(NSEvent.pressedMouseButtons())
         let modifiers = mouseModifiers(NSEvent.modifierFlags())
         let mouseEvent = MouseEvent(action: .up, button: button, modifiers: modifiers, location: event.location(in: self.scene!))
-        game?.eventCenter.send(mouseEvent)
+        game!.eventCenter.send(mouseEvent)
         
     }
     
