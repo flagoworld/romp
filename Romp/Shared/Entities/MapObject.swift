@@ -6,34 +6,41 @@
 //  Copyright © 2017 iDevGames. All rights reserved.
 //
 
-import SceneKit
+import SpriteKit
 import GameplayKit
+
+enum PhysicsMode {
+
+    case none
+    case fixed
+    case dynamic
+
+}
 
 class MapObject: GKEntity {
 
-    init(definition: MapObjectDefinition) {
+    init(imageNamed: String, physicsMode: PhysicsMode) {
     
         super.init()
         
-        let texture = SKTexture(imageNamed: definition.spriteImageName)
+        let texture = SKTexture(imageNamed: imageNamed)
         
         // Components
         let sprite = Sprite(texture: texture)
         let editable = Editable()
         
-        if definition.physicsMode > 0 {
+        switch physicsMode {
         
-            let physicsBody = SKPhysicsBody(rectangleOf: sprite.node.size)
-            
-            if definition.physicsMode == 1 {
-            
-                physicsBody.isDynamic = false
-                
-            
-            }
-            
-            sprite.node.physicsBody = physicsBody
-            
+        case .none:
+            break
+        
+        case .fixed:
+            sprite.node.physicsBody = SKPhysicsBody(rectangleOf: sprite.node.size)
+            sprite.node.physicsBody!.isDynamic = false
+        
+        case .dynamic:
+            sprite.node.physicsBody = SKPhysicsBody(rectangleOf: sprite.node.size)
+        
         }
         
         addComponent(sprite)

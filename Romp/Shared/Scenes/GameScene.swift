@@ -21,9 +21,9 @@ class GameScene: Scene {
     
         super.begin()
     
+        // Physics
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.80665)
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-        
         self.physicsBody?.categoryBitMask = CollisionCategory.inanimate
     
     }
@@ -31,6 +31,12 @@ class GameScene: Scene {
     override func end() {
     
         super.end()
+    
+    }
+    
+    override func handleEvent(_ event: Event) {
+    
+        // TODO: Escape takes you to the main menu
     
     }
     

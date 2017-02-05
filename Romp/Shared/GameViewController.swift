@@ -6,7 +6,7 @@
 //  Copyright © 2017 iDevGames. All rights reserved.
 //
 
-import SceneKit
+import SpriteKit
 import GameplayKit
 
 class GameViewController: ViewController, EventSubscriber {
@@ -18,7 +18,9 @@ class GameViewController: ViewController, EventSubscriber {
         
         scenes = [
         
-            "\(GameSceneEditor.self)": GameSceneEditor.newScene(game: game)
+            "\(MainMenuScene.self)": MainMenuScene(game: game),
+            "\(GameScene.self)": GameScene(game: game),
+            "\(GameSceneEditor.self)": GameSceneEditor(game: game)
         
         ]
         
@@ -40,7 +42,7 @@ class GameViewController: ViewController, EventSubscriber {
         skView.showsNodeCount = true
         
         // For now, start up in editor mode
-        game.eventCenter.send(SceneEvent(GameSceneEditor.self))
+        game.eventCenter.send(SceneEvent(MainMenuScene.self))
         
     }
     

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="MainMenu" customModule="Romp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AF2-gH-Aq5">
+                    <rect key="frame" x="204" y="211" width="72" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="54m-Pd-jzi"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ion-pe-4AJ">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="startPressedWithSender:" target="c22-O7-iKe" id="jz5-Z2-D51"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tks-cG-g5D">
+                    <rect key="frame" x="204" y="178" width="72" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="7ue-ob-zNI"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Editor" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XjD-Gs-joZ">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="editorPressedWithSender:" target="c22-O7-iKe" id="ml8-A4-moT"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HvH-XJ-FXi">
+                    <rect key="frame" x="204" y="145" width="72" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="FPz-Jv-rzv"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0pb-eK-czJ">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="quitPressedWithSender:" target="c22-O7-iKe" id="Kzu-WR-j15"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="AF2-gH-Aq5" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="33" id="HdH-C5-cow"/>
+                <constraint firstItem="HvH-XJ-FXi" firstAttribute="top" secondItem="Tks-cG-g5D" secondAttribute="bottom" constant="12" id="Iw9-X7-rQa"/>
+                <constraint firstItem="Tks-cG-g5D" firstAttribute="top" secondItem="AF2-gH-Aq5" secondAttribute="bottom" constant="12" id="Y80-6g-bgI"/>
+                <constraint firstItem="AF2-gH-Aq5" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="lHz-JR-sLl"/>
+                <constraint firstItem="HvH-XJ-FXi" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="sbL-Ha-GlM"/>
+                <constraint firstItem="Tks-cG-g5D" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="swI-nE-RWt"/>
+            </constraints>
+        </customView>
+    </objects>
+</document>

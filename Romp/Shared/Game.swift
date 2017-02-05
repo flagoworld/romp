@@ -7,7 +7,7 @@
 //
 
 import GameplayKit
-import SceneKit
+import SpriteKit
 
 struct CollisionCategory {
 
@@ -44,10 +44,8 @@ class Game: EventSubscriber {
     
     func handleEvent(_ event: Event) {
     
-        if event is SpawnEvent {
+        if let spawnEvent = event as? SpawnEvent {
         
-            let spawnEvent = event as! SpawnEvent
-            
             entities.append(spawnEvent.entity)
             
             componentSystems.editable.addComponent(foundIn: spawnEvent.entity)

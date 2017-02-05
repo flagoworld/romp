@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView wantsLayer="YES" id="c22-O7-iKe" customClass="Editor" customModule="Romp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="659" height="400"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box title="Inspector" translatesAutoresizingMaskIntoConstraints="NO" id="YDy-OP-I3w">
+                    <rect key="frame" x="486" y="16" width="156" height="364"/>
+                    <view key="contentView" id="3a1-D7-0tF">
+                        <rect key="frame" x="2" y="2" width="152" height="347"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="TIN-25-M4c"/>
+                    </constraints>
+                </box>
+                <tabView translatesAutoresizingMaskIntoConstraints="NO" id="lHQ-RB-YsB">
+                    <rect key="frame" x="13" y="10" width="164" height="376"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="A2w-6Q-EfG"/>
+                    </constraints>
+                    <font key="font" metaFont="system"/>
+                    <tabViewItems>
+                        <tabViewItem label="Edit" identifier="1" id="hzu-DK-59e">
+                            <view key="view" id="6bX-mj-RzR">
+                                <rect key="frame" x="10" y="33" width="144" height="330"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                        </tabViewItem>
+                        <tabViewItem label="Add" identifier="2" id="6eG-gY-rJm">
+                            <view key="view" id="Lga-he-aTc">
+                                <rect key="frame" x="10" y="33" width="144" height="330"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFI-BR-b2w">
+                                        <rect key="frame" x="0.0" y="0.0" width="144" height="330"/>
+                                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="8ad-6w-EiX">
+                                            <rect key="frame" x="0.0" y="0.0" width="144" height="330"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <collectionView id="X8o-Gy-OMQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="330"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="n7A-lM-5Uq">
+                                                        <size key="itemSize" width="50" height="50"/>
+                                                    </collectionViewFlowLayout>
+                                                    <color key="primaryBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="c22-O7-iKe" id="U3v-qm-9mL"/>
+                                                        <outlet property="delegate" destination="c22-O7-iKe" id="zck-jZ-jnb"/>
+                                                    </connections>
+                                                </collectionView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        </clipView>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Bvg-gT-oJd">
+                                            <rect key="frame" x="0.0" y="311" width="144" height="16"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Rwy-jf-BrS">
+                                            <rect key="frame" x="128" y="0.0" width="16" height="330"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="eFI-BR-b2w" secondAttribute="bottom" id="Q1G-Id-e5G"/>
+                                    <constraint firstAttribute="trailing" secondItem="eFI-BR-b2w" secondAttribute="trailing" id="f06-iM-Re4"/>
+                                    <constraint firstItem="eFI-BR-b2w" firstAttribute="leading" secondItem="Lga-he-aTc" secondAttribute="leading" id="gfV-KD-t45"/>
+                                    <constraint firstItem="eFI-BR-b2w" firstAttribute="top" secondItem="Lga-he-aTc" secondAttribute="top" id="rYt-aR-GDh"/>
+                                </constraints>
+                            </view>
+                        </tabViewItem>
+                    </tabViewItems>
+                </tabView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="YDy-OP-I3w" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="Rpp-jG-uKI"/>
+                <constraint firstAttribute="bottom" secondItem="YDy-OP-I3w" secondAttribute="bottom" constant="20" id="gPy-2c-yBh"/>
+                <constraint firstItem="lHQ-RB-YsB" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="i7a-ZV-r66"/>
+                <constraint firstItem="lHQ-RB-YsB" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="psY-Ms-8cZ"/>
+                <constraint firstAttribute="bottom" secondItem="lHQ-RB-YsB" secondAttribute="bottom" constant="20" id="qWf-Ki-ets"/>
+                <constraint firstAttribute="trailing" secondItem="YDy-OP-I3w" secondAttribute="trailing" constant="20" id="vKi-h1-eZJ"/>
+            </constraints>
+            <connections>
+                <outlet property="objectsCollectionView" destination="X8o-Gy-OMQ" id="9Al-Ee-gAZ"/>
+            </connections>
+            <point key="canvasLocation" x="138.5" y="153"/>
+        </customView>
+    </objects>
+</document>

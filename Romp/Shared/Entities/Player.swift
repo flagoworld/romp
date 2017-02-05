@@ -6,7 +6,7 @@
 //  Copyright © 2017 iDevGames. All rights reserved.
 //
 
-import SceneKit
+import SpriteKit
 import GameplayKit
 
 class Player: GKEntity {

@@ -21,7 +21,7 @@ enum EditingMode {
     
 }
 
-class GameSceneEditor: GameScene {
+class GameSceneEditor: GameScene, EditorUIDelegate {
     
     let editingMode: EditingMode = .interact
     
@@ -30,10 +30,18 @@ class GameSceneEditor: GameScene {
     var mouseDownEvent: MouseEvent = MouseEvent(action: .down, button: .left, modifiers: MouseEventModifiers(), location: CGPoint.zero)
     var mouseDragged: Bool = false
     
+    var objectDefinitions: [AnyObject] = [ NSObject(), NSObject(), NSObject(), NSObject(), NSObject(), NSObject(), NSObject(), NSObject() ]
+    var activeObjectDefinition: AnyObject? = nil
     
     override class var sceneName: String {
     
         return "GameSceneEditor"
+    
+    }
+    
+    override var uiClass: UserInterface.Type? {
+    
+        return Editor.self
     
     }
     
@@ -42,6 +50,12 @@ class GameSceneEditor: GameScene {
     override func begin() {
     
         super.begin()
+        
+        if let ui = view?.subviews.first(where: { $0 is Editor }) as? Editor {
+        
+            ui.delegate = self
+        
+        }
     
     }
     
@@ -64,11 +78,11 @@ class GameSceneEditor: GameScene {
         
             if mouseEvent.modifiers.contains(.shift) {
             
-                game!.eventCenter.send(SpawnEvent(entity: MapObject(definition: MapObjectDefinition(spriteImageName: "grass.png", physicsMode: 2)), location: mouseEvent.location))
+                game!.eventCenter.send(SpawnEvent(entity: MapObject(imageNamed: "grass.png", physicsMode: .dynamic), location: mouseEvent.location))
             
             } else {
             
-                game!.eventCenter.send(SpawnEvent(entity: MapObject(definition: MapObjectDefinition(spriteImageName: "grass.png", physicsMode: 1)), location: mouseEvent.location))
+                game!.eventCenter.send(SpawnEvent(entity: MapObject(imageNamed: "grass.png", physicsMode: .fixed), location: mouseEvent.location))
             
             }
             
@@ -104,26 +118,47 @@ class GameSceneEditor: GameScene {
         
         switch event {
         
-            case is MouseEvent:
-                let mouseEvent = event as! MouseEvent
-            
-                switch mouseEvent.action {
-                
-                    case .down:
-                        self.mouseDownEvent(mouseEvent: mouseEvent)
-                    
-                    case .drag:
-                        self.mouseDragEvent(mouseEvent: mouseEvent)
-                    
-                    case .up:
-                        self.mouseUpEvent(mouseEvent: mouseEvent)
-                
-                }
+        case is MouseEvent:
+            let mouseEvent = event as! MouseEvent
         
-            default: break
+            switch mouseEvent.action {
+            
+            case .down:
+                self.mouseDownEvent(mouseEvent: mouseEvent)
+            
+            case .drag:
+                self.mouseDragEvent(mouseEvent: mouseEvent)
+            
+            case .up:
+                self.mouseUpEvent(mouseEvent: mouseEvent)
+            
+            }
+    
+        default: break
         
         }
         
+    }
+    
+    
+// MARK: EditorUIDelegate
+
+    func editorUIObjectDefinitions() -> [AnyObject] {
+    
+        return objectDefinitions
+    
+    }
+    
+    func editorUIActiveObjectDefinitionChanged(activeObjectDefinition: AnyObject?) {
+    
+        self.activeObjectDefinition = activeObjectDefinition
+    
+    }
+    
+    func editorUIActiveObjectDefinition() -> AnyObject? {
+    
+        return activeObjectDefinition
+    
     }
 
 }

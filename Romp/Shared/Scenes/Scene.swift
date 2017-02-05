@@ -11,13 +11,23 @@ import GameplayKit
 
 class Scene: SKScene, EventSubscriber {
 
+    private var isLoaded = false
+    
+    var ui: UserInterface? = nil
     var game: Game?
-
+    
     class var sceneName: String {
     
-        fatalError("Scene must be subclassed")
+        fatalError("sceneName must be overridden")
     
     }
+    
+    var uiClass: UserInterface.Type? {
+    
+        return nil
+    
+    }
+    
     
     class func newScene(game: Game) -> Scene {
         // Load 'GameScene.sks' as an SKScene.
@@ -38,7 +48,7 @@ class Scene: SKScene, EventSubscriber {
     
     init(game: Game) {
     
-        super.init()
+        super.init(size: CGSize(width: 1, height: 1))
     
         self.game = game
         
@@ -52,8 +62,15 @@ class Scene: SKScene, EventSubscriber {
     
     override func didMove(to view: SKView) {
     
+        
+        if !isLoaded {
+        
+            isLoaded = true
+            load()
+        
+        }
+        
         begin()
-        print("\(view)")
         
     }
     
@@ -63,9 +80,39 @@ class Scene: SKScene, EventSubscriber {
         
     }
     
+    
+    func loadUI() {
+    
+        view!.subviews.first(where: { $0 is UserInterface })?.removeFromSuperview()
+        
+        if uiClass != nil {
+        
+            let ui = uiClass!.loadUI(game!)
+            ui.frame = view!.bounds
+            
+            self.ui = ui
+            
+            view!.addSubview(ui)
+            
+        }
+    
+    }
+    
+    
+    // MARK: Scene methods
+    
+    func load() {
+    
+        loadUI();
+    
+    }
+    
+    
     func begin() {
     
         game!.eventCenter.subscribe(self)
+        
+        view!.autoresizesSubviews = true
     
     }
     
@@ -78,10 +125,8 @@ class Scene: SKScene, EventSubscriber {
     
     func handleEvent(_ event: Event) {
     
-        if event is SpawnEvent {
+        if let spawnEvent = event as? SpawnEvent {
         
-            let spawnEvent = event as! SpawnEvent
-            
             if let component = spawnEvent.entity.component(ofType: Sprite.self) {
             
                 component.node.position = spawnEvent.location
