@@ -30,14 +30,9 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
     var mouseDownEvent: MouseEvent = MouseEvent(action: .down, button: .left, modifiers: MouseEventModifiers(), location: CGPoint.zero)
     var mouseDragged: Bool = false
     
+    // TODO: This will be resources or object definitions, loaded from a json file
     var objectDefinitions: [AnyObject] = [ NSObject(), NSObject(), NSObject(), NSObject(), NSObject(), NSObject(), NSObject(), NSObject() ]
     var activeObjectDefinition: AnyObject? = nil
-    
-    override class var sceneName: String {
-    
-        return "GameSceneEditor"
-    
-    }
     
     override var uiClass: UserInterface.Type? {
     

@@ -11,12 +11,6 @@ import GameplayKit
 
 class MainMenuScene: Scene {
 
-    override class var sceneName: String {
-    
-        return "MainMenuScene"
-    
-    }
-    
     override var uiClass: UserInterface.Type? {
     
         return MainMenu.self

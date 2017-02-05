@@ -16,34 +16,10 @@ class Scene: SKScene, EventSubscriber {
     var ui: UserInterface? = nil
     var game: Game?
     
-    class var sceneName: String {
-    
-        fatalError("sceneName must be overridden")
-    
-    }
-    
     var uiClass: UserInterface.Type? {
     
         return nil
     
-    }
-    
-    
-    class func newScene(game: Game) -> Scene {
-        // Load 'GameScene.sks' as an SKScene.
-        
-        guard let scene: Scene = SKScene(fileNamed: sceneName) as? Scene else {
-        
-            fatalError("Failed to load \(sceneName).sks")
-            
-        }
-        
-        // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFill
-        
-        scene.game = game
-        
-        return scene
     }
     
     init(game: Game) {
@@ -104,6 +80,8 @@ class Scene: SKScene, EventSubscriber {
     func load() {
     
         loadUI();
+        
+        backgroundColor = NSColor.white
     
     }
     

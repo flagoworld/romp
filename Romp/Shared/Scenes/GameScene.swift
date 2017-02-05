@@ -11,20 +11,20 @@ import GameplayKit
 
 class GameScene: Scene {
     
-    override class var sceneName: String {
-    
-        return "GameScene"
+    override func load() {
+
+        super.load()
+        
+        // Physics
+        self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.80665)
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        self.physicsBody?.categoryBitMask = CollisionCategory.inanimate
     
     }
     
     override func begin() {
     
         super.begin()
-    
-        // Physics
-        self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.80665)
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-        self.physicsBody?.categoryBitMask = CollisionCategory.inanimate
     
     }
     
