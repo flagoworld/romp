@@ -14,7 +14,7 @@ class Scene: SKScene, EventSubscriber {
     private var isLoaded = false
     
     var ui: UserInterface? = nil
-    var game: Game?
+    var game: Game
     
     var uiClass: UserInterface.Type? {
     
@@ -24,15 +24,15 @@ class Scene: SKScene, EventSubscriber {
     
     init(game: Game) {
     
-        super.init(size: CGSize(width: 1, height: 1))
-    
         self.game = game
+        
+        super.init(size: CGSize(width: 1, height: 1))
         
     }
     
     required init?(coder aDecoder: NSCoder) {
     
-        super.init(coder: aDecoder)
+        fatalError("cannot load scene from nib")
         
     }
     
@@ -63,7 +63,7 @@ class Scene: SKScene, EventSubscriber {
         
         if uiClass != nil {
         
-            let ui = uiClass!.loadUI(game!)
+            let ui = uiClass!.loadUI(game)
             ui.frame = view!.bounds
             
             self.ui = ui
@@ -81,14 +81,14 @@ class Scene: SKScene, EventSubscriber {
     
         loadUI();
         
-        backgroundColor = NSColor.white
+        backgroundColor = NSColor.black
     
     }
     
     
     func begin() {
     
-        game!.eventCenter.subscribe(self)
+        game.eventCenter.subscribe(self)
         
         view!.autoresizesSubviews = true
     
@@ -97,7 +97,7 @@ class Scene: SKScene, EventSubscriber {
     
     func end() {
     
-        game!.eventCenter.unsubscribe(self)
+        game.eventCenter.unsubscribe(self)
     
     }
     
@@ -129,7 +129,7 @@ extension Scene {
         let modifiers = mouseModifiers(NSEvent.modifierFlags())
         let mouseEvent = MouseEvent(action: .down, button: button, modifiers: modifiers, location: event.location(in: self.scene!))
         
-        game!.eventCenter.send(mouseEvent)
+        game.eventCenter.send(mouseEvent)
         
     }
     
@@ -138,7 +138,7 @@ extension Scene {
         let button = mouseButton(NSEvent.pressedMouseButtons())
         let modifiers = mouseModifiers(NSEvent.modifierFlags())
         let mouseEvent = MouseEvent(action: .drag, button: button, modifiers: modifiers, location: event.location(in: self.scene!))
-        game!.eventCenter.send(mouseEvent)
+        game.eventCenter.send(mouseEvent)
         
     }
     
@@ -147,7 +147,7 @@ extension Scene {
         let button = mouseButton(NSEvent.pressedMouseButtons())
         let modifiers = mouseModifiers(NSEvent.modifierFlags())
         let mouseEvent = MouseEvent(action: .up, button: button, modifiers: modifiers, location: event.location(in: self.scene!))
-        game!.eventCenter.send(mouseEvent)
+        game.eventCenter.send(mouseEvent)
         
     }
     

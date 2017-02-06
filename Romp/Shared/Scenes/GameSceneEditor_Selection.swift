@@ -15,7 +15,7 @@ extension GameSceneEditor {
     
         deselectEntities()
         
-        for component in game!.componentSystems.editable.components {
+        for component in game.componentSystems.editable.components {
         
             if let entity = component.entity {
             

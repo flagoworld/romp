@@ -30,6 +30,7 @@
 		A441CB211E4572D000D7144C /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A441CB201E4572D000D7144C /* Editor.swift */; };
 		A441CB261E46801200D7144C /* ObjectCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A441CB251E46801200D7144C /* ObjectCollectionViewItem.swift */; };
 		A441CB281E46818C00D7144C /* ObjectCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = A441CB271E46818C00D7144C /* ObjectCollectionViewItem.xib */; };
+		A441CB2B1E48249600D7144C /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = A441CB2A1E48249600D7144C /* Resources.swift */; };
 		A44967951E3E99B60001D4B6 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44967921E3E99B60001D4B6 /* Event.swift */; };
 		A44967961E3E99B60001D4B6 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44967921E3E99B60001D4B6 /* Event.swift */; };
 		A44967971E3E99B60001D4B6 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44967921E3E99B60001D4B6 /* Event.swift */; };
@@ -107,6 +108,7 @@
 		A441CB201E4572D000D7144C /* Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Editor.swift; path = UI/Editor.swift; sourceTree = "<group>"; };
 		A441CB251E46801200D7144C /* ObjectCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ObjectCollectionViewItem.swift; path = UI/Views/ObjectCollectionViewItem.swift; sourceTree = "<group>"; };
 		A441CB271E46818C00D7144C /* ObjectCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ObjectCollectionViewItem.xib; path = UI/Views/ObjectCollectionViewItem.xib; sourceTree = "<group>"; };
+		A441CB2A1E48249600D7144C /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resources.swift; path = Resources/Resources.swift; sourceTree = "<group>"; };
 		A44967921E3E99B60001D4B6 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A44967931E3E99B60001D4B6 /* EventCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCenter.swift; sourceTree = "<group>"; };
 		A44967941E3E99B60001D4B6 /* MouseEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseEvent.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			children = (
 				A441CB011E4318F500D7144C /* GameViewController.swift */,
 				A4DE5AC01E3D30F7003069F2 /* Game.swift */,
+				A441CB2A1E48249600D7144C /* Resources.swift */,
 				A46D716C1E3AF10700332D99 /* Scenes */,
 				A46D716F1E3AF22800332D99 /* Entities */,
 				A46D716E1E3AF22100332D99 /* Components */,
@@ -549,6 +552,7 @@
 				A449679D1E3E99B60001D4B6 /* MouseEvent.swift in Sources */,
 				A4DE5ABF1E3D256D003069F2 /* Background.swift in Sources */,
 				A441CB041E4318F500D7144C /* GameViewController.swift in Sources */,
+				A441CB2B1E48249600D7144C /* Resources.swift in Sources */,
 				A441CB191E44ECCA00D7144C /* UserInterface.swift in Sources */,
 				A40F711B1E402FFE002B72B6 /* Scene.swift in Sources */,
 			);

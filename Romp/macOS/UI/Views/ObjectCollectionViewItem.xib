@@ -4,48 +4,63 @@
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="c22-O7-iKe" userLabel="View">
-            <rect key="frame" x="0.0" y="0.0" width="135" height="51"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mB5-Ar-ESL">
-                    <rect key="frame" x="0.0" y="0.0" width="51" height="51"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="mB5-Ar-ESL" secondAttribute="height" multiplier="1:1" id="6Ej-Ku-Afq"/>
-                    </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Dhd-TX-ewy"/>
-                </imageView>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="a2B-RD-sEt">
-                    <rect key="frame" x="53" y="0.0" width="84" height="51"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Label describing an item" id="2ww-nu-fSC">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-            </subviews>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="a2B-RD-sEt" secondAttribute="trailing" id="ACI-MZ-T0g"/>
-                <constraint firstItem="a2B-RD-sEt" firstAttribute="leading" secondItem="mB5-Ar-ESL" secondAttribute="trailing" constant="4" id="JbF-pd-X1t"/>
-                <constraint firstItem="mB5-Ar-ESL" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="dzz-pT-uQo"/>
-                <constraint firstItem="a2B-RD-sEt" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="lbA-zA-BIt"/>
-                <constraint firstItem="mB5-Ar-ESL" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="p9n-4O-doW"/>
-                <constraint firstAttribute="bottom" secondItem="mB5-Ar-ESL" secondAttribute="bottom" id="tBu-xZ-bcW"/>
-            </constraints>
-            <point key="canvasLocation" x="46.5" y="128.5"/>
-        </customView>
         <collectionViewItem id="wWs-E1-UwX" customClass="ObjectCollectionViewItem" customModule="Romp" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="mB5-Ar-ESL" id="H8J-Qx-nXA"/>
                 <outlet property="textField" destination="a2B-RD-sEt" id="hnn-1i-cRl"/>
-                <outlet property="view" destination="c22-O7-iKe" id="nc9-xe-X5F"/>
+                <outlet property="view" destination="GNn-uW-xDy" id="mcz-JL-1nL"/>
             </connections>
         </collectionViewItem>
+        <box boxType="custom" borderType="none" cornerRadius="4" title="Box" transparent="YES" id="GNn-uW-xDy">
+            <rect key="frame" x="0.0" y="0.0" width="135" height="51"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" id="Ftt-nX-VHm">
+                <rect key="frame" x="0.0" y="0.0" width="135" height="51"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mB5-Ar-ESL">
+                        <rect key="frame" x="0.0" y="0.0" width="51" height="51"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="mB5-Ar-ESL" secondAttribute="height" multiplier="1:1" id="6Ej-Ku-Afq"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Dhd-TX-ewy"/>
+                    </imageView>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="a2B-RD-sEt">
+                        <rect key="frame" x="57" y="0.0" width="80" height="51"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Label describing an item" id="2ww-nu-fSC">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="mB5-Ar-ESL" secondAttribute="bottom" id="Ltt-Oc-TfG"/>
+                    <constraint firstAttribute="trailing" secondItem="a2B-RD-sEt" secondAttribute="trailing" id="Z9b-VA-MPz"/>
+                    <constraint firstItem="mB5-Ar-ESL" firstAttribute="leading" secondItem="Ftt-nX-VHm" secondAttribute="leading" id="fO7-Bk-XBe"/>
+                    <constraint firstItem="a2B-RD-sEt" firstAttribute="leading" secondItem="mB5-Ar-ESL" secondAttribute="trailing" constant="8" id="gPQ-Zi-5yD"/>
+                    <constraint firstItem="a2B-RD-sEt" firstAttribute="centerY" secondItem="Ftt-nX-VHm" secondAttribute="centerY" id="svE-SS-qdq"/>
+                    <constraint firstItem="mB5-Ar-ESL" firstAttribute="top" secondItem="Ftt-nX-VHm" secondAttribute="top" id="xfg-h9-1rK"/>
+                </constraints>
+            </view>
+            <color key="borderColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+            <color key="fillColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+            <connections>
+                <binding destination="wWs-E1-UwX" name="transparent" keyPath="selected" id="zxv-Fs-tLb">
+                    <dictionary key="options">
+                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                    </dictionary>
+                </binding>
+            </connections>
+            <point key="canvasLocation" x="46.5" y="224.5"/>
+        </box>
+        <userDefaultsController representsSharedInstance="YES" id="a4z-To-stb"/>
     </objects>
 </document>

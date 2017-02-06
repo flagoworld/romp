@@ -11,9 +11,9 @@ import Cocoa
 
 protocol EditorUIDelegate {
 
-    func editorUIObjectDefinitions() -> [AnyObject]
-    func editorUIActiveObjectDefinition() -> AnyObject?
-    func editorUIActiveObjectDefinitionChanged(activeObjectDefinition: AnyObject?)
+    func editorUIResources() -> [Resource]
+    func editorUIActiveResource() -> Resource?
+    func editorUIActiveResourceChanged(activeResource: Resource?)
 
 }
 
@@ -28,10 +28,10 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
         if let objectsCollectionView = self.objectsCollectionView {
         
             let flowLayout = NSCollectionViewFlowLayout()
-            flowLayout.itemSize = NSSize(width: objectsCollectionView.bounds.size.width - 20.0, height: 40.0)
-            flowLayout.sectionInset = EdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
-            flowLayout.minimumInteritemSpacing = 20.0
-            flowLayout.minimumLineSpacing = 20.0
+            flowLayout.itemSize = NSSize(width: objectsCollectionView.bounds.size.width - 10.0, height: 40.0)
+            flowLayout.sectionInset = EdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
+            flowLayout.minimumInteritemSpacing = 10.0
+            flowLayout.minimumLineSpacing = 10.0
             
             objectsCollectionView.collectionViewLayout = flowLayout
         }
@@ -51,7 +51,7 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
         
         if let delegate = self.delegate {
         
-            return delegate.editorUIObjectDefinitions().count
+            return delegate.editorUIResources().count
         
         } else {
         
@@ -65,10 +65,10 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
     
         let item = collectionView.makeItem(withIdentifier: "ObjectCollectionViewItem", for: indexPath)
         guard let collectionViewItem = item as? ObjectCollectionViewItem else { return item }
+        let resource = delegate!.editorUIResources()[indexPath.item]
         
-        
-        collectionViewItem.imageView?.image = NSImage.init(named: "grass.png")
-        collectionViewItem.textField?.stringValue = "Object at: \(indexPath.item)"
+        collectionViewItem.imageView?.image = NSImage.init(named: resource.texture)
+        collectionViewItem.textField?.stringValue = resource.name
         
         
         return item
@@ -79,7 +79,7 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
         
         if let delegate = self.delegate {
         
-            delegate.editorUIActiveObjectDefinitionChanged(activeObjectDefinition: delegate.editorUIObjectDefinitions()[indexPaths.first!.item])
+            delegate.editorUIActiveResourceChanged(activeResource: delegate.editorUIResources()[indexPaths.first!.item])
             
         }
         

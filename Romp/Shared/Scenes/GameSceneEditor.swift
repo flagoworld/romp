@@ -31,8 +31,9 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
     var mouseDragged: Bool = false
     
     // TODO: This will be resources or object definitions, loaded from a json file
-    var objectDefinitions: [AnyObject] = [ NSObject(), NSObject(), NSObject(), NSObject(), NSObject(), NSObject(), NSObject(), NSObject() ]
-    var activeObjectDefinition: AnyObject? = nil
+    var resources: [Resource]?
+    
+    var activeResource: Resource? = nil
     
     override var uiClass: UserInterface.Type? {
     
@@ -45,6 +46,8 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
     override func begin() {
     
         super.begin()
+        
+        resources = game.resources
         
         if let ui = view?.subviews.first(where: { $0 is Editor }) as? Editor {
         
@@ -73,11 +76,11 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
         
             if mouseEvent.modifiers.contains(.shift) {
             
-                game!.eventCenter.send(SpawnEvent(entity: MapObject(imageNamed: "grass.png", physicsMode: .dynamic), location: mouseEvent.location))
+                game.eventCenter.send(SpawnEvent(entity: MapObject(imageNamed: "grass.png", physicsMode: .dynamic), location: mouseEvent.location))
             
             } else {
             
-                game!.eventCenter.send(SpawnEvent(entity: MapObject(imageNamed: "grass.png", physicsMode: .fixed), location: mouseEvent.location))
+                game.eventCenter.send(SpawnEvent(entity: MapObject(imageNamed: "grass.png", physicsMode: .fixed), location: mouseEvent.location))
             
             }
             
@@ -138,21 +141,21 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
     
 // MARK: EditorUIDelegate
 
-    func editorUIObjectDefinitions() -> [AnyObject] {
+    func editorUIResources() -> [Resource] {
     
-        return objectDefinitions
-    
-    }
-    
-    func editorUIActiveObjectDefinitionChanged(activeObjectDefinition: AnyObject?) {
-    
-        self.activeObjectDefinition = activeObjectDefinition
+        return resources!
     
     }
     
-    func editorUIActiveObjectDefinition() -> AnyObject? {
+    func editorUIActiveResourceChanged(activeResource: Resource?) {
     
-        return activeObjectDefinition
+        self.activeResource = activeResource
+    
+    }
+    
+    func editorUIActiveResource() -> Resource? {
+    
+        return activeResource
     
     }
 
