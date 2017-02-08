@@ -13,12 +13,15 @@
 		A40F71211E40396C002B72B6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F711D1E40396C002B72B6 /* GameScene.swift */; };
 		A40F71221E40396C002B72B6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F711D1E40396C002B72B6 /* GameScene.swift */; };
 		A40F71231E40396C002B72B6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F711D1E40396C002B72B6 /* GameScene.swift */; };
-		A40F71261E403977002B72B6 /* GameSceneEditor_Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F71241E403977002B72B6 /* GameSceneEditor_Selection.swift */; };
-		A40F71271E403977002B72B6 /* GameSceneEditor_Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F71241E403977002B72B6 /* GameSceneEditor_Selection.swift */; };
-		A40F71281E403977002B72B6 /* GameSceneEditor_Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F71241E403977002B72B6 /* GameSceneEditor_Selection.swift */; };
-		A40F71291E403977002B72B6 /* GameSceneEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F71251E403977002B72B6 /* GameSceneEditor.swift */; };
-		A40F712A1E403977002B72B6 /* GameSceneEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F71251E403977002B72B6 /* GameSceneEditor.swift */; };
-		A40F712B1E403977002B72B6 /* GameSceneEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F71251E403977002B72B6 /* GameSceneEditor.swift */; };
+		A4107A8A1E4BC673003859A5 /* GameSceneEditor_Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4107A881E4BC673003859A5 /* GameSceneEditor_Selection.swift */; };
+		A4107A8B1E4BC673003859A5 /* GameSceneEditor_Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4107A881E4BC673003859A5 /* GameSceneEditor_Selection.swift */; };
+		A4107A8C1E4BC673003859A5 /* GameSceneEditor_Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4107A881E4BC673003859A5 /* GameSceneEditor_Selection.swift */; };
+		A4107A8D1E4BC673003859A5 /* GameSceneEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4107A891E4BC673003859A5 /* GameSceneEditor.swift */; };
+		A4107A8E1E4BC673003859A5 /* GameSceneEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4107A891E4BC673003859A5 /* GameSceneEditor.swift */; };
+		A4107A8F1E4BC673003859A5 /* GameSceneEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4107A891E4BC673003859A5 /* GameSceneEditor.swift */; };
+		A4107A911E4BC697003859A5 /* SelectionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4107A901E4BC697003859A5 /* SelectionBox.swift */; };
+		A4107A921E4BC697003859A5 /* SelectionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4107A901E4BC697003859A5 /* SelectionBox.swift */; };
+		A4107A931E4BC697003859A5 /* SelectionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4107A901E4BC697003859A5 /* SelectionBox.swift */; };
 		A441CB021E4318F500D7144C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A441CB011E4318F500D7144C /* GameViewController.swift */; };
 		A441CB031E4318F500D7144C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A441CB011E4318F500D7144C /* GameViewController.swift */; };
 		A441CB041E4318F500D7144C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A441CB011E4318F500D7144C /* GameViewController.swift */; };
@@ -97,8 +100,9 @@
 /* Begin PBXFileReference section */
 		A40F71121E3FF67B002B72B6 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scene.swift; path = Scenes/Scene.swift; sourceTree = "<group>"; };
 		A40F711D1E40396C002B72B6 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = Scenes/GameScene.swift; sourceTree = "<group>"; };
-		A40F71241E403977002B72B6 /* GameSceneEditor_Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameSceneEditor_Selection.swift; path = Scenes/GameSceneEditor_Selection.swift; sourceTree = "<group>"; };
-		A40F71251E403977002B72B6 /* GameSceneEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameSceneEditor.swift; path = Scenes/GameSceneEditor.swift; sourceTree = "<group>"; };
+		A4107A881E4BC673003859A5 /* GameSceneEditor_Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameSceneEditor_Selection.swift; path = Scenes/Editor/GameSceneEditor_Selection.swift; sourceTree = "<group>"; };
+		A4107A891E4BC673003859A5 /* GameSceneEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameSceneEditor.swift; path = Scenes/Editor/GameSceneEditor.swift; sourceTree = "<group>"; };
+		A4107A901E4BC697003859A5 /* SelectionBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionBox.swift; path = Scenes/Editor/SelectionBox.swift; sourceTree = "<group>"; };
 		A441CB011E4318F500D7144C /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A441CB121E445FBD00D7144C /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainMenu.swift; path = UI/MainMenu.swift; sourceTree = "<group>"; };
 		A441CB141E445FD400D7144C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = UI/MainMenu.xib; sourceTree = "<group>"; };
@@ -169,6 +173,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A4107A871E4BC645003859A5 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				A4107A891E4BC673003859A5 /* GameSceneEditor.swift */,
+				A4107A881E4BC673003859A5 /* GameSceneEditor_Selection.swift */,
+				A4107A901E4BC697003859A5 /* SelectionBox.swift */,
+			);
+			name = Editor;
+			sourceTree = "<group>";
+		};
 		A441CB111E445E6B00D7144C /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,8 +297,7 @@
 				A40F71121E3FF67B002B72B6 /* Scene.swift */,
 				A441CB1A1E44F98E00D7144C /* MainMenuScene.swift */,
 				A40F711D1E40396C002B72B6 /* GameScene.swift */,
-				A40F71251E403977002B72B6 /* GameSceneEditor.swift */,
-				A40F71241E403977002B72B6 /* GameSceneEditor_Selection.swift */,
+				A4107A871E4BC645003859A5 /* Editor */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -479,19 +492,20 @@
 				A46D717F1E3AFE1400332D99 /* Background.swift in Sources */,
 				A478A4E11E41981200BF9887 /* SpawnEvent.swift in Sources */,
 				A46D71771E3AF3B400332D99 /* InputControl.swift in Sources */,
-				A40F71261E403977002B72B6 /* GameSceneEditor_Selection.swift in Sources */,
 				A46D717B1E3AF43100332D99 /* Sprite.swift in Sources */,
 				A4DE5AC11E3D30F7003069F2 /* Game.swift in Sources */,
 				A46D717D1E3AF69400332D99 /* MapObject.swift in Sources */,
 				A46D71731E3AF32500332D99 /* MeleeWeapon.swift in Sources */,
 				A46D71711E3AF2E600332D99 /* Player.swift in Sources */,
+				A4107A911E4BC697003859A5 /* SelectionBox.swift in Sources */,
+				A4107A8D1E4BC673003859A5 /* GameSceneEditor.swift in Sources */,
 				A4DE5AAD1E3D14E8003069F2 /* Editable.swift in Sources */,
 				A44967951E3E99B60001D4B6 /* Event.swift in Sources */,
 				A46D71751E3AF34800332D99 /* RangedWeapon.swift in Sources */,
 				A46D71311E3AEFEF00332D99 /* ViewController.swift in Sources */,
-				A40F71291E403977002B72B6 /* GameSceneEditor.swift in Sources */,
 				A449679B1E3E99B60001D4B6 /* MouseEvent.swift in Sources */,
 				A441CB021E4318F500D7144C /* GameViewController.swift in Sources */,
+				A4107A8A1E4BC673003859A5 /* GameSceneEditor_Selection.swift in Sources */,
 				A46D712F1E3AEFEF00332D99 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,19 +521,20 @@
 				A4DE5AB41E3D2569003069F2 /* Sprite.swift in Sources */,
 				A478A4E21E41981200BF9887 /* SpawnEvent.swift in Sources */,
 				A4DE5AB01E3D2569003069F2 /* MeleeWeapon.swift in Sources */,
-				A40F71271E403977002B72B6 /* GameSceneEditor_Selection.swift in Sources */,
 				A4DE5AC21E3D30F7003069F2 /* Game.swift in Sources */,
 				A4DE5AB11E3D2569003069F2 /* RangedWeapon.swift in Sources */,
 				A4DE5ABB1E3D256D003069F2 /* MapObject.swift in Sources */,
 				A46D71421E3AEFEF00332D99 /* ViewController.swift in Sources */,
 				A44967961E3E99B60001D4B6 /* Event.swift in Sources */,
+				A4107A921E4BC697003859A5 /* SelectionBox.swift in Sources */,
+				A4107A8E1E4BC673003859A5 /* GameSceneEditor.swift in Sources */,
 				A46D71401E3AEFEF00332D99 /* AppDelegate.swift in Sources */,
 				A4DE5ABA1E3D256D003069F2 /* Player.swift in Sources */,
 				A4DE5AAE1E3D2564003069F2 /* Editable.swift in Sources */,
-				A40F712A1E403977002B72B6 /* GameSceneEditor.swift in Sources */,
 				A449679C1E3E99B60001D4B6 /* MouseEvent.swift in Sources */,
 				A4DE5ABC1E3D256D003069F2 /* Background.swift in Sources */,
 				A441CB031E4318F500D7144C /* GameViewController.swift in Sources */,
+				A4107A8B1E4BC673003859A5 /* GameSceneEditor_Selection.swift in Sources */,
 				A40F711A1E402FFE002B72B6 /* Scene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,9 +552,10 @@
 				A478A4E31E41981200BF9887 /* SpawnEvent.swift in Sources */,
 				A441CB1B1E44F98E00D7144C /* MainMenuScene.swift in Sources */,
 				A4DE5AB51E3D256A003069F2 /* MeleeWeapon.swift in Sources */,
-				A40F71281E403977002B72B6 /* GameSceneEditor_Selection.swift in Sources */,
 				A4DE5AC31E3D30F7003069F2 /* Game.swift in Sources */,
+				A4107A8C1E4BC673003859A5 /* GameSceneEditor_Selection.swift in Sources */,
 				A4DE5AB61E3D256A003069F2 /* RangedWeapon.swift in Sources */,
+				A4107A931E4BC697003859A5 /* SelectionBox.swift in Sources */,
 				A4DE5ABE1E3D256D003069F2 /* MapObject.swift in Sources */,
 				A441CB131E445FBD00D7144C /* MainMenu.swift in Sources */,
 				A441CB261E46801200D7144C /* ObjectCollectionViewItem.swift in Sources */,
@@ -548,11 +564,11 @@
 				A46D714E1E3AEFEF00332D99 /* AppDelegate.swift in Sources */,
 				A4DE5ABD1E3D256D003069F2 /* Player.swift in Sources */,
 				A4DE5AAF1E3D2564003069F2 /* Editable.swift in Sources */,
-				A40F712B1E403977002B72B6 /* GameSceneEditor.swift in Sources */,
 				A449679D1E3E99B60001D4B6 /* MouseEvent.swift in Sources */,
 				A4DE5ABF1E3D256D003069F2 /* Background.swift in Sources */,
 				A441CB041E4318F500D7144C /* GameViewController.swift in Sources */,
 				A441CB2B1E48249600D7144C /* Resources.swift in Sources */,
+				A4107A8F1E4BC673003859A5 /* GameSceneEditor.swift in Sources */,
 				A441CB191E44ECCA00D7144C /* UserInterface.swift in Sources */,
 				A40F711B1E402FFE002B72B6 /* Scene.swift in Sources */,
 			);
