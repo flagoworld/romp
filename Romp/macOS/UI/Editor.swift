@@ -7,19 +7,29 @@
 //
 
 import Cocoa
+import GameplayKit
 
 
 protocol EditorUIDelegate {
 
+    // Editing
+    func editorUIEditingModeChanged(editingMode: EditingMode)
+    
+    // Adding
     func editorUIResources() -> [Resource]
     func editorUIActiveResource() -> Resource?
     func editorUIActiveResourceChanged(activeResource: Resource?)
 
 }
 
-class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSource {
+class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSource, NSTabViewDelegate {
     
     @IBOutlet weak var objectsCollectionView: NSCollectionView?
+    
+    @IBOutlet weak var editImageView: NSImageView?
+    @IBOutlet weak var editName: NSTextField?
+    @IBOutlet weak var editPhysics: NSPopUpButton?
+    @IBOutlet weak var editShader: NSPopUpButton?
     
     var delegate: EditorUIDelegate? = nil
     
@@ -34,6 +44,56 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
             flowLayout.minimumLineSpacing = 10.0
             
             objectsCollectionView.collectionViewLayout = flowLayout
+        }
+    
+    }
+    
+    func setSelectedEntity(_ entity: GKEntity?) {
+    
+        if let entity = entity {
+        
+            if let resource = (entity as? MapObject)?.resource {
+            
+                editImageView!.image = NSImage(named: resource.texture)
+                editName!.stringValue = resource.name
+                
+                switch resource.physics {
+                
+                case .none:
+                    editPhysics!.selectItem(at: 0)
+                
+                case .fixed:
+                    editPhysics!.selectItem(at: 1)
+                
+                case .dynamic:
+                    editPhysics!.selectItem(at: 2)
+                
+                }
+                
+                editShader?.selectItem(at: 0)
+            
+            } else {
+            
+                editImageView!.image = nil
+                editName!.stringValue = "Unknown Entity"
+                editPhysics!.selectItem(at: 0)
+                editShader?.selectItem(at: 0)
+            
+            }
+            
+            editPhysics?.isEnabled = true
+            editShader?.isEnabled = true
+        
+        } else {
+        
+            editImageView!.image = nil
+            editName!.stringValue = "No Selection"
+            editPhysics!.selectItem(at: 0)
+            editShader?.selectItem(at: 0)
+            
+            editPhysics?.isEnabled = false
+            editShader?.isEnabled = false
+        
         }
     
     }
@@ -80,6 +140,23 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
         if let delegate = self.delegate {
         
             delegate.editorUIActiveResourceChanged(activeResource: delegate.editorUIResources()[indexPaths.first!.item])
+            
+        }
+        
+    }
+    
+    
+    // MARK: NSTabView
+    
+    func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+    
+        if tabView.indexOfTabViewItem(tabViewItem!) == 1 {
+        
+            delegate?.editorUIEditingModeChanged(editingMode: ( .add ))
+            
+        } else {
+            
+            delegate?.editorUIEditingModeChanged(editingMode: ( .edit ))
             
         }
         

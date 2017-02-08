@@ -8,12 +8,19 @@
 
 import Foundation
 
-struct Resource {
+class Resource {
 
     let name: String
     let texture: String
     let physics: PhysicsMode
     
+    init(name: String, texture: String, physics: PhysicsMode) {
+    
+        self.name = name
+        self.texture = texture
+        self.physics = physics
+    
+    }
 
 }
 

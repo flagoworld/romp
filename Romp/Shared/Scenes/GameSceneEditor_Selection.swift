@@ -32,13 +32,21 @@ extension GameSceneEditor {
                     editable.dragStartPosition = sprite.node.position
                     selectedEntities.append(entity)
                     
-                    return
+                    break;
                 
                 }
             
             }
         
         }
+        
+        if let ui = view?.subviews.first(where: { $0 is Editor }) as? Editor {
+        
+            ui.setSelectedEntity(selectedEntities.first)
+        
+        }
+        
+        selectionBox.setSelectedNode(selectedEntities.first?.component(ofType: Sprite.self)?.node)
     
     }
     
@@ -66,6 +74,8 @@ extension GameSceneEditor {
             }
             
         }
+        
+        selectionBox.setSelectedNode(selectedEntities.first?.component(ofType: Sprite.self)?.node)
     
     }
     

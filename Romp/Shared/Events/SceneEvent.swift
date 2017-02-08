@@ -11,9 +11,9 @@ import GameplayKit
 
 class SceneEvent: Event {
 
-    let sceneClass: SKScene.Type
+    let sceneClass: Scene.Type
     
-    init(_ sceneClass: SKScene.Type) {
+    init(_ sceneClass: Scene.Type) {
     
         self.sceneClass = sceneClass
     

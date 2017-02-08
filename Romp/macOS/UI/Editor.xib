@@ -139,7 +139,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="144" height="321"/>
                                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="8ad-6w-EiX">
                                                         <rect key="frame" x="0.0" y="0.0" width="144" height="321"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <collectionView selectable="YES" id="X8o-Gy-OMQ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="144" height="321"/>
@@ -175,6 +175,9 @@
                                         </view>
                                     </tabViewItem>
                                 </tabViewItems>
+                                <connections>
+                                    <outlet property="delegate" destination="c22-O7-iKe" id="9nC-2U-ZtF"/>
+                                </connections>
                             </tabView>
                         </subviews>
                         <constraints>
@@ -188,7 +191,6 @@
                         <constraint firstAttribute="width" constant="150" id="0p3-wA-Evt"/>
                     </constraints>
                     <color key="fillColor" red="1" green="1" blue="1" alpha="0.80487478595890416" colorSpace="calibratedRGB"/>
-                    <font key="titleFont" metaFont="message" size="11"/>
                 </box>
             </subviews>
             <constraints>
@@ -197,6 +199,10 @@
                 <constraint firstAttribute="bottom" secondItem="WxC-sb-Xvi" secondAttribute="bottom" constant="20" id="g1T-U2-bNO"/>
             </constraints>
             <connections>
+                <outlet property="editImageView" destination="94n-xA-ekS" id="WSz-OD-vGX"/>
+                <outlet property="editName" destination="OJF-4q-hRr" id="Cmk-hd-sVr"/>
+                <outlet property="editPhysics" destination="clZ-0a-qKF" id="eya-x9-oHd"/>
+                <outlet property="editShader" destination="XML-Vv-eTE" id="Vpa-sl-iK9"/>
                 <outlet property="objectsCollectionView" destination="X8o-Gy-OMQ" id="9Al-Ee-gAZ"/>
             </connections>
             <point key="canvasLocation" x="138.5" y="153"/>

@@ -11,20 +11,14 @@ import GameplayKit
 
 class GameScene: Scene {
     
-    override func load() {
-
-        super.load()
+    override func begin() {
+    
+        super.begin()
         
         // Physics
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.80665)
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody?.categoryBitMask = CollisionCategory.inanimate
-    
-    }
-    
-    override func begin() {
-    
-        super.begin()
     
     }
     
@@ -36,6 +30,8 @@ class GameScene: Scene {
     
     override func handleEvent(_ event: Event) {
     
+        super.handleEvent(event)
+        
         // TODO: Escape takes you to the main menu
     
     }

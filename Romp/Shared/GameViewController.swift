@@ -52,7 +52,13 @@ class GameViewController: ViewController, EventSubscriber {
         
             let skView = self.view as! SKView
             
-            skView.presentScene(scenes["\(sceneEvent.sceneClass)"])
+            let scene = sceneEvent.sceneClass.init(game: game)
+            
+            scene.size = CGSize(width: 1366.0, height: 1024.0)
+//            scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            scene.scaleMode = .aspectFill;
+            
+            skView.presentScene(scene)
         
         }
 

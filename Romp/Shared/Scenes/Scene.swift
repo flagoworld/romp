@@ -11,8 +11,6 @@ import GameplayKit
 
 class Scene: SKScene, EventSubscriber {
 
-    private var isLoaded = false
-    
     var ui: UserInterface? = nil
     var game: Game
     
@@ -22,7 +20,7 @@ class Scene: SKScene, EventSubscriber {
     
     }
     
-    init(game: Game) {
+    required init(game: Game) {
     
         self.game = game
         
@@ -36,15 +34,18 @@ class Scene: SKScene, EventSubscriber {
         
     }
     
+    deinit {
+    
+        end()
+    
+    }
+    
     override func didMove(to view: SKView) {
     
         
-        if !isLoaded {
+        loadUI()
         
-            isLoaded = true
-            load()
-        
-        }
+        backgroundColor = NSColor.black
         
         begin()
         
@@ -76,15 +77,6 @@ class Scene: SKScene, EventSubscriber {
     
     
     // MARK: Scene methods
-    
-    func load() {
-    
-        loadUI();
-        
-        backgroundColor = NSColor.black
-    
-    }
-    
     
     func begin() {
     

@@ -10,22 +10,99 @@ import GameplayKit
 
 enum EditingMode {
 
-    // Selecting, dragging, etc
-    case interact
+    case edit
+    case add
     
-    // Multiselect
-    case select
+}
+
+class SelectionBox {
+
+    let topLeftHandle = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
+    let topRightHandle = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
+    let bottomRightHandle = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
+    let bottomLeftHandle = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
+    let outline = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
     
-    // Duplicate
-    case duplicate
+    init() {
     
+        topLeftHandle.fillColor = NSColor.clear
+        topLeftHandle.strokeColor = NSColor.red
+        topLeftHandle.lineWidth = 1
+        topLeftHandle.zPosition = 2
+        
+        topRightHandle.fillColor = NSColor.clear
+        topRightHandle.strokeColor = NSColor.red
+        topRightHandle.lineWidth = 1
+        topRightHandle.zPosition = 2
+        
+        bottomRightHandle.fillColor = NSColor.clear
+        bottomRightHandle.strokeColor = NSColor.red
+        bottomRightHandle.lineWidth = 1
+        bottomRightHandle.zPosition = 2
+        
+        bottomLeftHandle.fillColor = NSColor.clear
+        bottomLeftHandle.strokeColor = NSColor.red
+        bottomLeftHandle.lineWidth = 1
+        bottomLeftHandle.zPosition = 2
+        
+        outline.fillColor = NSColor.clear
+        outline.strokeColor = NSColor.red
+        outline.lineWidth = 1
+        outline.zPosition = 1
+    
+    }
+    
+    func setSelectedNode(_ node: SKNode?) {
+    
+        if let node = node {
+        
+            topLeftHandle.position = node.position
+            topRightHandle.position = CGPoint(x: node.frame.origin.x + node.frame.size.width - topRightHandle.frame.size.width, y: node.frame.origin.y)
+            bottomRightHandle.position = CGPoint(x: node.frame.origin.x + node.frame.size.width - topRightHandle.frame.size.width, y: node.frame.origin.y + node.frame.size.height - bottomRightHandle.frame.size.height)
+            bottomLeftHandle.position = CGPoint(x: node.frame.origin.x, y: node.frame.origin.y + node.frame.size.height - bottomRightHandle.frame.size.height)
+            
+            outline.position = CGPoint(x: node.position.x - 1, y: node.position.y - 1)
+            outline.xScale = node.xScale + 2
+            outline.yScale = node.yScale + 2
+            
+            setHidden(false)
+        
+        } else {
+        
+            setHidden(true)
+        
+        }
+    
+    }
+    
+    func setHidden(_ hidden: Bool) {
+    
+        topLeftHandle.isHidden = hidden
+        topRightHandle.isHidden = hidden
+        bottomRightHandle.isHidden = hidden
+        bottomLeftHandle.isHidden = hidden
+        outline.isHidden = hidden
+    
+    }
+    
+    func addToScene(_ scene: SKScene) {
+    
+        scene.addChild(topLeftHandle)
+        scene.addChild(topRightHandle)
+        scene.addChild(bottomRightHandle)
+        scene.addChild(bottomLeftHandle)
+        scene.addChild(outline)
+    
+    }
+
 }
 
 class GameSceneEditor: GameScene, EditorUIDelegate {
     
-    let editingMode: EditingMode = .interact
+    var editingMode: EditingMode = .edit
     
     var selectedEntities: [GKEntity] = []
+    let selectionBox: SelectionBox = SelectionBox()
     
     var mouseDownEvent: MouseEvent = MouseEvent(action: .down, button: .left, modifiers: MouseEventModifiers(), location: CGPoint.zero)
     var mouseDragged: Bool = false
@@ -41,6 +118,18 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
     
     }
     
+    required init(game: Game) {
+        
+        super.init(game: game)
+        
+        selectionBox.addToScene(self)
+
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 // MARK: Begin/End editing
     
     override func begin() {
@@ -52,6 +141,7 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
         if let ui = view?.subviews.first(where: { $0 is Editor }) as? Editor {
         
             ui.delegate = self
+            ui.setSelectedEntity(selectedEntities.first)
         
         }
     
@@ -72,16 +162,12 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
         
         selectEntity(mouseEvent)
         
-        if selectedEntities.count == 0 {
+        if selectedEntities.count == 0 && editingMode == .add {
         
-            if mouseEvent.modifiers.contains(.shift) {
+            if let activeResource = self.activeResource {
             
-                game.eventCenter.send(SpawnEvent(entity: MapObject(imageNamed: "grass.png", physicsMode: .dynamic), location: mouseEvent.location))
-            
-            } else {
-            
-                game.eventCenter.send(SpawnEvent(entity: MapObject(imageNamed: "grass.png", physicsMode: .fixed), location: mouseEvent.location))
-            
+                game.eventCenter.send(SpawnEvent(entity: MapObject(activeResource), location: mouseEvent.location))
+                
             }
             
             selectEntity(mouseEvent)
@@ -157,6 +243,12 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
     
         return activeResource
     
+    }
+    
+    func editorUIEditingModeChanged(editingMode: EditingMode) {
+        
+        self.editingMode = editingMode
+        
     }
 
 }

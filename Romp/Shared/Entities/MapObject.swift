@@ -19,17 +19,21 @@ enum PhysicsMode {
 
 class MapObject: GKEntity {
 
-    init(imageNamed: String, physicsMode: PhysicsMode) {
+    let resource: Resource
+
+    init(_ resource: Resource) {
+    
+        self.resource = resource
     
         super.init()
         
-        let texture = SKTexture(imageNamed: imageNamed)
+        let texture = SKTexture(imageNamed: resource.texture)
         
         // Components
         let sprite = Sprite(texture: texture)
         let editable = Editable()
         
-        switch physicsMode {
+        switch resource.physics {
         
         case .none:
             break
