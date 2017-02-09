@@ -13,12 +13,14 @@ class Resource {
     let name: String
     let texture: String
     let physics: PhysicsMode
+    let tile: Bool
     
-    init(name: String, texture: String, physics: PhysicsMode) {
+    init(name: String, texture: String, physics: PhysicsMode, tile: Bool) {
     
         self.name = name
         self.texture = texture
         self.physics = physics
+        self.tile = tile
     
     }
 
@@ -28,7 +30,7 @@ typealias R = Resource
 
 private var _resources: [Resource] = [
 
-    R(name: "Grass", texture: "grass.png", physics: .fixed)
+    R(name: "Grass", texture: "grass.png", physics: .fixed, tile: true)
 
 ].sorted { (one, two) -> Bool in
     return one.name > two.name

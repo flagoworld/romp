@@ -49,6 +49,8 @@ class MapObject: GKEntity {
         
         addComponent(sprite)
         addComponent(editable)
+        
+        sprite.setRepeating(true)
     
     }
     

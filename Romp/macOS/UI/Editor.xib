@@ -105,6 +105,17 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
+                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EpM-LG-OCW">
+                                                    <rect key="frame" x="3" y="152" width="138" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="Tile Texture" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="cdp-Hx-lKc">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="tileCheckBoxChangedWithSender:" target="c22-O7-iKe" id="tvg-4R-Lm2"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="XML-Vv-eTE" firstAttribute="top" secondItem="CNH-eW-9Dy" secondAttribute="bottom" constant="3" id="3AL-qx-vGw"/>
@@ -203,6 +214,7 @@
                 <outlet property="editName" destination="OJF-4q-hRr" id="Cmk-hd-sVr"/>
                 <outlet property="editPhysics" destination="clZ-0a-qKF" id="eya-x9-oHd"/>
                 <outlet property="editShader" destination="XML-Vv-eTE" id="Vpa-sl-iK9"/>
+                <outlet property="editTile" destination="EpM-LG-OCW" id="JeT-3Z-uHM"/>
                 <outlet property="objectsCollectionView" destination="X8o-Gy-OMQ" id="9Al-Ee-gAZ"/>
             </connections>
             <point key="canvasLocation" x="138.5" y="153"/>

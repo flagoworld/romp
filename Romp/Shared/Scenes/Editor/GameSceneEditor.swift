@@ -178,5 +178,11 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
         self.editingMode = editingMode
         
     }
+    
+    func editorUIEditingTileChanged(tile: Bool) {
+        
+        self.selectedEntities.first!.component(ofType: Sprite.self)!.setRepeating(tile)
+        
+    }
 
 }

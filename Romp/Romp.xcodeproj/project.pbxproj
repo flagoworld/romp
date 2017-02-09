@@ -72,6 +72,12 @@
 		A478A4E51E41C6BB00BF9887 /* SceneEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A478A4E41E41C6BB00BF9887 /* SceneEvent.swift */; };
 		A478A4E61E41C6BB00BF9887 /* SceneEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A478A4E41E41C6BB00BF9887 /* SceneEvent.swift */; };
 		A478A4E71E41C6BB00BF9887 /* SceneEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A478A4E41E41C6BB00BF9887 /* SceneEvent.swift */; };
+		A486C8801E4C448200D1B34B /* repeating_ogl.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A486C87F1E4C448200D1B34B /* repeating_ogl.fsh */; };
+		A486C8811E4C49F000D1B34B /* repeating_ogl.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A486C87F1E4C448200D1B34B /* repeating_ogl.fsh */; };
+		A486C8821E4C49F100D1B34B /* repeating_ogl.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A486C87F1E4C448200D1B34B /* repeating_ogl.fsh */; };
+		A486C8841E4C4AB900D1B34B /* repeating_mtl.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A486C8831E4C4AB900D1B34B /* repeating_mtl.fsh */; };
+		A486C8851E4C4AB900D1B34B /* repeating_mtl.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A486C8831E4C4AB900D1B34B /* repeating_mtl.fsh */; };
+		A486C8861E4C4AB900D1B34B /* repeating_mtl.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A486C8831E4C4AB900D1B34B /* repeating_mtl.fsh */; };
 		A4DE5AAD1E3D14E8003069F2 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DE5AAC1E3D14E8003069F2 /* Editable.swift */; };
 		A4DE5AAE1E3D2564003069F2 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DE5AAC1E3D14E8003069F2 /* Editable.swift */; };
 		A4DE5AAF1E3D2564003069F2 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DE5AAC1E3D14E8003069F2 /* Editable.swift */; };
@@ -143,6 +149,8 @@
 		A46D717E1E3AFE1400332D99 /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Background.swift; path = Entities/Background.swift; sourceTree = "<group>"; };
 		A478A4E01E41981200BF9887 /* SpawnEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpawnEvent.swift; sourceTree = "<group>"; };
 		A478A4E41E41C6BB00BF9887 /* SceneEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneEvent.swift; sourceTree = "<group>"; };
+		A486C87F1E4C448200D1B34B /* repeating_ogl.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = repeating_ogl.fsh; path = Shaders/repeating_ogl.fsh; sourceTree = "<group>"; };
+		A486C8831E4C4AB900D1B34B /* repeating_mtl.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = repeating_mtl.fsh; path = Shaders/repeating_mtl.fsh; sourceTree = "<group>"; };
 		A4DE5AAC1E3D14E8003069F2 /* Editable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Editable.swift; path = Components/Editable.swift; sourceTree = "<group>"; };
 		A4DE5AC01E3D30F7003069F2 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		A4DE5AEE1E3DA995003069F2 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
@@ -240,6 +248,7 @@
 				A46D716E1E3AF22100332D99 /* Components */,
 				A4DE5AC81E3D3286003069F2 /* States */,
 				A44967911E3E99B60001D4B6 /* Events */,
+				A486C87E1E4C442C00D1B34B /* Shaders */,
 				A46D71231E3AEFEF00332D99 /* Actions.sks */,
 				A46D71261E3AEFEF00332D99 /* Assets.xcassets */,
 			);
@@ -322,6 +331,15 @@
 				A46D717E1E3AFE1400332D99 /* Background.swift */,
 			);
 			name = Entities;
+			sourceTree = "<group>";
+		};
+		A486C87E1E4C442C00D1B34B /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				A486C87F1E4C448200D1B34B /* repeating_ogl.fsh */,
+				A486C8831E4C4AB900D1B34B /* repeating_mtl.fsh */,
+			);
+			name = Shaders;
 			sourceTree = "<group>";
 		};
 		A4DE5AC81E3D3286003069F2 /* States */ = {
@@ -448,7 +466,9 @@
 				A4DE5AEF1E3DA9EA003069F2 /* grass.png in Resources */,
 				A46D71341E3AEFEF00332D99 /* Main.storyboard in Resources */,
 				A46D71551E3AEFEF00332D99 /* Actions.sks in Resources */,
+				A486C8801E4C448200D1B34B /* repeating_ogl.fsh in Resources */,
 				A46D71371E3AEFEF00332D99 /* LaunchScreen.storyboard in Resources */,
+				A486C8841E4C4AB900D1B34B /* repeating_mtl.fsh in Resources */,
 				A46D715E1E3AEFF000332D99 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,7 +478,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A46D71451E3AEFEF00332D99 /* Main.storyboard in Resources */,
+				A486C8851E4C4AB900D1B34B /* repeating_mtl.fsh in Resources */,
 				A4DE5AF01E3DA9EB003069F2 /* grass.png in Resources */,
+				A486C8811E4C49F000D1B34B /* repeating_ogl.fsh in Resources */,
 				A46D715F1E3AEFF000332D99 /* Assets.xcassets in Resources */,
 				A46D71561E3AEFEF00332D99 /* Actions.sks in Resources */,
 			);
@@ -471,6 +493,8 @@
 				A46D71531E3AEFEF00332D99 /* Main.storyboard in Resources */,
 				A441CB281E46818C00D7144C /* ObjectCollectionViewItem.xib in Resources */,
 				A441CB1F1E4572C100D7144C /* Editor.xib in Resources */,
+				A486C8821E4C49F100D1B34B /* repeating_ogl.fsh in Resources */,
+				A486C8861E4C4AB900D1B34B /* repeating_mtl.fsh in Resources */,
 				A4DE5AF11E3DA9EB003069F2 /* grass.png in Resources */,
 				A46D71601E3AEFF000332D99 /* Assets.xcassets in Resources */,
 				A441CB151E445FD400D7144C /* MainMenu.xib in Resources */,

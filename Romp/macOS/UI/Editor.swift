@@ -15,6 +15,8 @@ protocol EditorUIDelegate {
     // Editing
     func editorUIEditingModeChanged(editingMode: EditingMode)
     
+    func editorUIEditingTileChanged(tile: Bool)
+    
     // Adding
     func editorUIResources() -> [Resource]
     func editorUIActiveResource() -> Resource?
@@ -30,6 +32,7 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
     @IBOutlet weak var editName: NSTextField?
     @IBOutlet weak var editPhysics: NSPopUpButton?
     @IBOutlet weak var editShader: NSPopUpButton?
+    @IBOutlet weak var editTile: NSButton?
     
     var delegate: EditorUIDelegate? = nil
     
@@ -71,6 +74,9 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
                 }
                 
                 editShader?.selectItem(at: 0)
+                
+                // TODO: give component a getting for repeating
+                editTile?.state = entity.component(ofType: Sprite.self)!.node.shader == nil ? NSOffState : NSOnState
             
             } else {
             
@@ -78,11 +84,13 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
                 editName!.stringValue = "Unknown Entity"
                 editPhysics!.selectItem(at: 0)
                 editShader?.selectItem(at: 0)
+                editTile!.state = NSOffState
             
             }
             
             editPhysics?.isEnabled = true
             editShader?.isEnabled = true
+            editTile?.isEnabled = true
         
         } else {
         
@@ -90,9 +98,11 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
             editName!.stringValue = "No Selection"
             editPhysics!.selectItem(at: 0)
             editShader?.selectItem(at: 0)
+            editTile!.state = NSOffState
             
             editPhysics?.isEnabled = false
             editShader?.isEnabled = false
+            editTile?.isEnabled = false
         
         }
     
@@ -170,6 +180,19 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
             
         }
         
+    }
+    
+    
+    // MARK: NSButton
+    
+    @IBAction func tileCheckBoxChanged(sender: NSButton) {
+    
+        if let delegate = self.delegate {
+        
+            delegate.editorUIEditingTileChanged(tile: sender.state == NSOnState)
+            
+        }
+    
     }
 
 }

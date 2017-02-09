@@ -53,7 +53,7 @@ class Scene: SKScene, EventSubscriber {
     
     override func update(_ currentTime: TimeInterval) {
     
-        
+        game.update(currentTime)
         
     }
     
