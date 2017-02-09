@@ -145,6 +145,16 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
         
     }
     
+    func collectionView(_ collectionView: NSCollectionView, didDeselectItemsAt indexPaths: Set<IndexPath>) {
+     
+        if let delegate = self.delegate {
+        
+            delegate.editorUIActiveResourceChanged(activeResource: nil)
+            
+        }
+        
+    }
+    
     
     // MARK: NSTabView
     
