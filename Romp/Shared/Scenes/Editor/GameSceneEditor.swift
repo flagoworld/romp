@@ -8,21 +8,14 @@
 
 import GameplayKit
 
-enum EditingMode {
-
-    case edit
-    case add
-    
-}
-
 class GameSceneEditor: GameScene, EditorUIDelegate {
     
-    var editingMode: EditingMode = .edit
+    var editingStateMachine: GKStateMachine?
     
     var selectedEntities: [GKEntity] = []
-    let selectionBox: SelectionBox = SelectionBox()
+    var selectionBoxes: [SelectionBox] = []
     
-    var mouseDownEvent: MouseEvent = MouseEvent(action: .down, button: .left, modifiers: MouseEventModifiers(), location: CGPoint.zero)
+    var mouseDownEvent: MouseEvent = MouseEvent(action: .down, buttons: [ .left ], modifiers: MouseEventModifiers(), location: CGPoint.zero)
     var mouseDragged: Bool = false
     
     // TODO: This will be resources or object definitions, loaded from a json file
@@ -40,7 +33,15 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
         
         super.init(game: game)
         
-        selectionBox.addToScene(self)
+        editingStateMachine = GKStateMachine(states: [
+        
+            EditorStateMap(eventCenter: game.eventCenter, editorScene: self),
+            EditorStateObject(eventCenter: game.eventCenter, editorScene: self),
+            EditorStateAdd(eventCenter: game.eventCenter, editorScene: self)
+        
+        ])
+        
+        editingStateMachine!.enter(EditorStateMap.self)
 
     }
     
@@ -70,6 +71,31 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
         super.end()
     
     }
+
+
+// MARK: Event handling
+
+    override func handleEvent(_ event: Event) {
+    
+        super.handleEvent(event)
+        
+        if let destroyEvent = event as? DestroyEvent {
+        
+            for selectionBox in selectionBoxes {
+            
+                if selectionBox.node == destroyEvent.entity.component(ofType: Sprite.self)?.node {
+                
+                    selectionBoxes.remove(at: selectionBoxes.index(of: selectionBox)!)
+                
+                }
+            
+            }
+            
+            selectedEntities.remove(at: selectedEntities.index(of: destroyEvent.entity)!)
+        
+        }
+    
+    }
     
     
 // MARK: Mouse input
@@ -78,80 +104,21 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
         
         mouseDownEvent = mouseEvent
         
-        
-        if !selectionBox.grabHandle(mouseEvent.location) {
-        
-            selectEntity(mouseEvent)
-            
-            if selectedEntities.count == 0 && editingMode == .add {
-            
-                if let activeResource = self.activeResource {
-                
-                    game.eventCenter.send(SpawnEvent(entity: MapObject(activeResource), location: mouseEvent.location))
-                    
-                }
-                
-                selectEntity(mouseEvent)
-            
-            }
-            
-        }
-        
     }
     
     func mouseDragEvent(mouseEvent: MouseEvent) {
     
         mouseDragged = true
         
-        if !selectionBox.moveHandle(mouseEvent.location) {
-        
-            moveSelectedEntities(mouseEvent)
-            
-        }
-        
     }
     
     func mouseUpEvent(mouseEvent: MouseEvent) {
     
         // Clear previous mouse info
-        mouseDownEvent = MouseEvent(action: .down, button: .left, modifiers: MouseEventModifiers(), location: CGPoint.zero)
+        mouseDownEvent = MouseEvent(action: .down, buttons: .left, modifiers: MouseEventModifiers(), location: CGPoint.zero)
         mouseDragged = false
-        selectionBox.releaseHandle()
         
     }
-    
-    
-    
-// MARK: EventSubscriber
-    
-    override func handleEvent(_ event: Event) {
-        
-        super.handleEvent(event)
-        
-        switch event {
-        
-        case is MouseEvent:
-            let mouseEvent = event as! MouseEvent
-        
-            switch mouseEvent.action {
-            
-            case .down:
-                self.mouseDownEvent(mouseEvent: mouseEvent)
-            
-            case .drag:
-                self.mouseDragEvent(mouseEvent: mouseEvent)
-            
-            case .up:
-                self.mouseUpEvent(mouseEvent: mouseEvent)
-            
-            }
-    
-        default: break
-        
-        }
-        
-    }
-    
     
 // MARK: EditorUIDelegate
 
@@ -173,9 +140,9 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
     
     }
     
-    func editorUIEditingModeChanged(editingMode: EditingMode) {
+    func editorUIStateChanged(stateClass: GKState.Type) {
         
-        self.editingMode = editingMode
+        editingStateMachine!.enter(stateClass)
         
     }
     
@@ -183,6 +150,27 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
         
         self.selectedEntities.first!.component(ofType: Sprite.self)!.setRepeating(tile)
         
+    }
+    
+    
+    
+    
+    
+    
+    // todo: use KeyEvent
+    
+    override func keyDown(with event: NSEvent)
+    {
+        let s   =   event.charactersIgnoringModifiers!
+        let s1  =   s.unicodeScalars
+        let s2  =   s1[s1.startIndex].value
+        let s3  =   Int(s2)
+        
+        if s3 == NSDeleteCharacter {
+        
+            removeSelectedEntities()
+        
+        }
     }
 
 }

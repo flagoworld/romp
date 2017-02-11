@@ -78,6 +78,21 @@
 		A486C8841E4C4AB900D1B34B /* repeating_mtl.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A486C8831E4C4AB900D1B34B /* repeating_mtl.fsh */; };
 		A486C8851E4C4AB900D1B34B /* repeating_mtl.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A486C8831E4C4AB900D1B34B /* repeating_mtl.fsh */; };
 		A486C8861E4C4AB900D1B34B /* repeating_mtl.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A486C8831E4C4AB900D1B34B /* repeating_mtl.fsh */; };
+		A486C88D1E4E523400D1B34B /* EditorStateMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C88C1E4E523400D1B34B /* EditorStateMap.swift */; };
+		A486C88F1E4E53D500D1B34B /* EditorStateMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C88C1E4E523400D1B34B /* EditorStateMap.swift */; };
+		A486C8901E4E53D600D1B34B /* EditorStateMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C88C1E4E523400D1B34B /* EditorStateMap.swift */; };
+		A486C8921E4E545300D1B34B /* EditorStateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C8911E4E545300D1B34B /* EditorStateObject.swift */; };
+		A486C8931E4E545300D1B34B /* EditorStateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C8911E4E545300D1B34B /* EditorStateObject.swift */; };
+		A486C8941E4E545300D1B34B /* EditorStateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C8911E4E545300D1B34B /* EditorStateObject.swift */; };
+		A486C8961E4E546700D1B34B /* EditorStateAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C8951E4E546700D1B34B /* EditorStateAdd.swift */; };
+		A486C8971E4E546700D1B34B /* EditorStateAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C8951E4E546700D1B34B /* EditorStateAdd.swift */; };
+		A486C8981E4E546700D1B34B /* EditorStateAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C8951E4E546700D1B34B /* EditorStateAdd.swift */; };
+		A486C89A1E4E586600D1B34B /* EditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C8991E4E586600D1B34B /* EditorState.swift */; };
+		A486C89B1E4E586600D1B34B /* EditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C8991E4E586600D1B34B /* EditorState.swift */; };
+		A486C89C1E4E586600D1B34B /* EditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C8991E4E586600D1B34B /* EditorState.swift */; };
+		A486C89E1E4F895B00D1B34B /* DestroyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C89D1E4F895B00D1B34B /* DestroyEvent.swift */; };
+		A486C89F1E4F895B00D1B34B /* DestroyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C89D1E4F895B00D1B34B /* DestroyEvent.swift */; };
+		A486C8A01E4F895B00D1B34B /* DestroyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C89D1E4F895B00D1B34B /* DestroyEvent.swift */; };
 		A4DE5AAD1E3D14E8003069F2 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DE5AAC1E3D14E8003069F2 /* Editable.swift */; };
 		A4DE5AAE1E3D2564003069F2 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DE5AAC1E3D14E8003069F2 /* Editable.swift */; };
 		A4DE5AAF1E3D2564003069F2 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DE5AAC1E3D14E8003069F2 /* Editable.swift */; };
@@ -151,6 +166,11 @@
 		A478A4E41E41C6BB00BF9887 /* SceneEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneEvent.swift; sourceTree = "<group>"; };
 		A486C87F1E4C448200D1B34B /* repeating_ogl.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = repeating_ogl.fsh; path = Shaders/repeating_ogl.fsh; sourceTree = "<group>"; };
 		A486C8831E4C4AB900D1B34B /* repeating_mtl.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = repeating_mtl.fsh; path = Shaders/repeating_mtl.fsh; sourceTree = "<group>"; };
+		A486C88C1E4E523400D1B34B /* EditorStateMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorStateMap.swift; path = States/Editor/EditorStateMap.swift; sourceTree = "<group>"; };
+		A486C8911E4E545300D1B34B /* EditorStateObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorStateObject.swift; path = States/Editor/EditorStateObject.swift; sourceTree = "<group>"; };
+		A486C8951E4E546700D1B34B /* EditorStateAdd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorStateAdd.swift; path = States/Editor/EditorStateAdd.swift; sourceTree = "<group>"; };
+		A486C8991E4E586600D1B34B /* EditorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorState.swift; path = States/Editor/EditorState.swift; sourceTree = "<group>"; };
+		A486C89D1E4F895B00D1B34B /* DestroyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestroyEvent.swift; sourceTree = "<group>"; };
 		A4DE5AAC1E3D14E8003069F2 /* Editable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Editable.swift; path = Components/Editable.swift; sourceTree = "<group>"; };
 		A4DE5AC01E3D30F7003069F2 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		A4DE5AEE1E3DA995003069F2 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
@@ -220,6 +240,7 @@
 				A44967921E3E99B60001D4B6 /* Event.swift */,
 				A44967941E3E99B60001D4B6 /* MouseEvent.swift */,
 				A478A4E01E41981200BF9887 /* SpawnEvent.swift */,
+				A486C89D1E4F895B00D1B34B /* DestroyEvent.swift */,
 				A478A4E41E41C6BB00BF9887 /* SceneEvent.swift */,
 			);
 			path = Events;
@@ -342,9 +363,21 @@
 			name = Shaders;
 			sourceTree = "<group>";
 		};
+		A486C88E1E4E523900D1B34B /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				A486C8991E4E586600D1B34B /* EditorState.swift */,
+				A486C88C1E4E523400D1B34B /* EditorStateMap.swift */,
+				A486C8911E4E545300D1B34B /* EditorStateObject.swift */,
+				A486C8951E4E546700D1B34B /* EditorStateAdd.swift */,
+			);
+			name = Editor;
+			sourceTree = "<group>";
+		};
 		A4DE5AC81E3D3286003069F2 /* States */ = {
 			isa = PBXGroup;
 			children = (
+				A486C88E1E4E523900D1B34B /* Editor */,
 			);
 			name = States;
 			sourceTree = "<group>";
@@ -419,7 +452,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = iDevGames;
+				ORGANIZATIONNAME = "Ryan Layne";
 				TargetAttributes = {
 					A46D712A1E3AEFEF00332D99 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -510,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A40F71211E40396C002B72B6 /* GameScene.swift in Sources */,
+				A486C8921E4E545300D1B34B /* EditorStateObject.swift in Sources */,
 				A44967981E3E99B60001D4B6 /* EventCenter.swift in Sources */,
 				A40F71131E3FF67B002B72B6 /* Scene.swift in Sources */,
 				A478A4E51E41C6BB00BF9887 /* SceneEvent.swift in Sources */,
@@ -517,8 +551,10 @@
 				A478A4E11E41981200BF9887 /* SpawnEvent.swift in Sources */,
 				A46D71771E3AF3B400332D99 /* InputControl.swift in Sources */,
 				A46D717B1E3AF43100332D99 /* Sprite.swift in Sources */,
+				A486C88D1E4E523400D1B34B /* EditorStateMap.swift in Sources */,
 				A4DE5AC11E3D30F7003069F2 /* Game.swift in Sources */,
 				A46D717D1E3AF69400332D99 /* MapObject.swift in Sources */,
+				A486C89A1E4E586600D1B34B /* EditorState.swift in Sources */,
 				A46D71731E3AF32500332D99 /* MeleeWeapon.swift in Sources */,
 				A46D71711E3AF2E600332D99 /* Player.swift in Sources */,
 				A4107A911E4BC697003859A5 /* SelectionBox.swift in Sources */,
@@ -527,8 +563,10 @@
 				A44967951E3E99B60001D4B6 /* Event.swift in Sources */,
 				A46D71751E3AF34800332D99 /* RangedWeapon.swift in Sources */,
 				A46D71311E3AEFEF00332D99 /* ViewController.swift in Sources */,
+				A486C89E1E4F895B00D1B34B /* DestroyEvent.swift in Sources */,
 				A449679B1E3E99B60001D4B6 /* MouseEvent.swift in Sources */,
 				A441CB021E4318F500D7144C /* GameViewController.swift in Sources */,
+				A486C8961E4E546700D1B34B /* EditorStateAdd.swift in Sources */,
 				A4107A8A1E4BC673003859A5 /* GameSceneEditor_Selection.swift in Sources */,
 				A46D712F1E3AEFEF00332D99 /* AppDelegate.swift in Sources */,
 			);
@@ -539,6 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A40F71221E40396C002B72B6 /* GameScene.swift in Sources */,
+				A486C8931E4E545300D1B34B /* EditorStateObject.swift in Sources */,
 				A44967991E3E99B60001D4B6 /* EventCenter.swift in Sources */,
 				A4DE5AB21E3D2569003069F2 /* InputControl.swift in Sources */,
 				A478A4E61E41C6BB00BF9887 /* SceneEvent.swift in Sources */,
@@ -546,8 +585,10 @@
 				A478A4E21E41981200BF9887 /* SpawnEvent.swift in Sources */,
 				A4DE5AB01E3D2569003069F2 /* MeleeWeapon.swift in Sources */,
 				A4DE5AC21E3D30F7003069F2 /* Game.swift in Sources */,
+				A486C88F1E4E53D500D1B34B /* EditorStateMap.swift in Sources */,
 				A4DE5AB11E3D2569003069F2 /* RangedWeapon.swift in Sources */,
 				A4DE5ABB1E3D256D003069F2 /* MapObject.swift in Sources */,
+				A486C89B1E4E586600D1B34B /* EditorState.swift in Sources */,
 				A46D71421E3AEFEF00332D99 /* ViewController.swift in Sources */,
 				A44967961E3E99B60001D4B6 /* Event.swift in Sources */,
 				A4107A921E4BC697003859A5 /* SelectionBox.swift in Sources */,
@@ -556,8 +597,10 @@
 				A4DE5ABA1E3D256D003069F2 /* Player.swift in Sources */,
 				A4DE5AAE1E3D2564003069F2 /* Editable.swift in Sources */,
 				A449679C1E3E99B60001D4B6 /* MouseEvent.swift in Sources */,
+				A486C89F1E4F895B00D1B34B /* DestroyEvent.swift in Sources */,
 				A4DE5ABC1E3D256D003069F2 /* Background.swift in Sources */,
 				A441CB031E4318F500D7144C /* GameViewController.swift in Sources */,
+				A486C8971E4E546700D1B34B /* EditorStateAdd.swift in Sources */,
 				A4107A8B1E4BC673003859A5 /* GameSceneEditor_Selection.swift in Sources */,
 				A40F711A1E402FFE002B72B6 /* Scene.swift in Sources */,
 			);
@@ -579,18 +622,23 @@
 				A4DE5AC31E3D30F7003069F2 /* Game.swift in Sources */,
 				A4107A8C1E4BC673003859A5 /* GameSceneEditor_Selection.swift in Sources */,
 				A4DE5AB61E3D256A003069F2 /* RangedWeapon.swift in Sources */,
+				A486C8A01E4F895B00D1B34B /* DestroyEvent.swift in Sources */,
 				A4107A931E4BC697003859A5 /* SelectionBox.swift in Sources */,
+				A486C8981E4E546700D1B34B /* EditorStateAdd.swift in Sources */,
 				A4DE5ABE1E3D256D003069F2 /* MapObject.swift in Sources */,
 				A441CB131E445FBD00D7144C /* MainMenu.swift in Sources */,
 				A441CB261E46801200D7144C /* ObjectCollectionViewItem.swift in Sources */,
 				A46D71501E3AEFEF00332D99 /* ViewController.swift in Sources */,
 				A44967971E3E99B60001D4B6 /* Event.swift in Sources */,
 				A46D714E1E3AEFEF00332D99 /* AppDelegate.swift in Sources */,
+				A486C89C1E4E586600D1B34B /* EditorState.swift in Sources */,
 				A4DE5ABD1E3D256D003069F2 /* Player.swift in Sources */,
 				A4DE5AAF1E3D2564003069F2 /* Editable.swift in Sources */,
+				A486C8901E4E53D600D1B34B /* EditorStateMap.swift in Sources */,
 				A449679D1E3E99B60001D4B6 /* MouseEvent.swift in Sources */,
 				A4DE5ABF1E3D256D003069F2 /* Background.swift in Sources */,
 				A441CB041E4318F500D7144C /* GameViewController.swift in Sources */,
+				A486C8941E4E545300D1B34B /* EditorStateObject.swift in Sources */,
 				A441CB2B1E48249600D7144C /* Resources.swift in Sources */,
 				A4107A8F1E4BC673003859A5 /* GameSceneEditor.swift in Sources */,
 				A441CB191E44ECCA00D7144C /* UserInterface.swift in Sources */,

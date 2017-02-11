@@ -16,11 +16,13 @@ enum MouseEventAction {
 
 }
 
-enum MouseEventButton {
+struct MouseEventButtons: OptionSet {
 
-    case left
-    case right
-    case middle
+    let rawValue: Int
+    
+    static let left = MouseEventButtons(rawValue: 1 << 0)
+    static let right = MouseEventButtons(rawValue: 1 << 1)
+    static let middle = MouseEventButtons(rawValue: 1 << 2)
 
 }
 
@@ -28,25 +30,25 @@ struct MouseEventModifiers: OptionSet {
 
     let rawValue: Int
     
-    static let capsLock = MouseEventModifiers(rawValue: 1)
-    static let shift = MouseEventModifiers(rawValue: 2)
-    static let control = MouseEventModifiers(rawValue: 3)
-    static let option = MouseEventModifiers(rawValue: 4)
-    static let command = MouseEventModifiers(rawValue: 5)
+    static let capsLock = MouseEventModifiers(rawValue: 1 << 0)
+    static let shift = MouseEventModifiers(rawValue: 1 << 1)
+    static let control = MouseEventModifiers(rawValue: 1 << 2)
+    static let option = MouseEventModifiers(rawValue: 1 << 3)
+    static let command = MouseEventModifiers(rawValue: 1 << 4)
 
 }
 
 class MouseEvent: Event {
 
     let action: MouseEventAction
-    let button: MouseEventButton
+    let buttons: MouseEventButtons
     let modifiers: MouseEventModifiers
     let location: CGPoint
     
-    init(action: MouseEventAction, button: MouseEventButton, modifiers: MouseEventModifiers, location: CGPoint) {
+    init(action: MouseEventAction, buttons: MouseEventButtons, modifiers: MouseEventModifiers, location: CGPoint) {
     
         self.action = action
-        self.button = button
+        self.buttons = buttons
         self.modifiers = modifiers
         self.location = location
     

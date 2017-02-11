@@ -95,14 +95,24 @@ class Scene: SKScene, EventSubscriber {
     
     func handleEvent(_ event: Event) {
     
-        if let spawnEvent = event as? SpawnEvent {
+        switch event {
         
+        case let spawnEvent as SpawnEvent:
             if let component = spawnEvent.entity.component(ofType: Sprite.self) {
             
                 component.node.position = spawnEvent.location
                 addChild(component.node)
             
             }
+        
+        case let destroyEvent as DestroyEvent:
+            if let component = destroyEvent.entity.component(ofType: Sprite.self) {
+            
+                component.node.removeFromParent()
+            
+            }
+        
+        default: break;
         
         }
     
@@ -119,7 +129,7 @@ extension Scene {
     
         let button = mouseButton(NSEvent.pressedMouseButtons())
         let modifiers = mouseModifiers(NSEvent.modifierFlags())
-        let mouseEvent = MouseEvent(action: .down, button: button, modifiers: modifiers, location: event.location(in: self.scene!))
+        let mouseEvent = MouseEvent(action: .down, buttons: button, modifiers: modifiers, location: event.location(in: self.scene!))
         
         game.eventCenter.send(mouseEvent)
         
@@ -129,7 +139,7 @@ extension Scene {
         
         let button = mouseButton(NSEvent.pressedMouseButtons())
         let modifiers = mouseModifiers(NSEvent.modifierFlags())
-        let mouseEvent = MouseEvent(action: .drag, button: button, modifiers: modifiers, location: event.location(in: self.scene!))
+        let mouseEvent = MouseEvent(action: .drag, buttons: button, modifiers: modifiers, location: event.location(in: self.scene!))
         game.eventCenter.send(mouseEvent)
         
     }
@@ -138,32 +148,34 @@ extension Scene {
         
         let button = mouseButton(NSEvent.pressedMouseButtons())
         let modifiers = mouseModifiers(NSEvent.modifierFlags())
-        let mouseEvent = MouseEvent(action: .up, button: button, modifiers: modifiers, location: event.location(in: self.scene!))
+        let mouseEvent = MouseEvent(action: .up, buttons: button, modifiers: modifiers, location: event.location(in: self.scene!))
         game.eventCenter.send(mouseEvent)
         
     }
     
-    func mouseButton(_ pressedMouseButtons: Int) -> MouseEventButton {
+    func mouseButton(_ pressedMouseButtons: Int) -> MouseEventButtons {
 
-        if (pressedMouseButtons & (1 << 0)) > 0 {
+        var buttons = MouseEventButtons()
         
-            return .left
+        if (pressedMouseButtons & (1 << 0)) != 0 {
         
-        }
-        
-        if (pressedMouseButtons & (1 << 1)) > 0 {
-        
-            return .right
+            buttons.insert(.left)
         
         }
         
-        if (pressedMouseButtons & (1 << 2)) > 0 {
+        if (pressedMouseButtons & (1 << 1)) != 0 {
         
-            return .middle
+            buttons.insert(.right)
         
         }
         
-        return .left
+        if (pressedMouseButtons & (1 << 2)) != 0 {
+        
+            buttons.insert(.middle)
+        
+        }
+        
+        return buttons
 
     }
 
@@ -204,6 +216,16 @@ extension Scene {
         return modifiers
     
     }
+    
+//    override func keyDown(with event: NSEvent)
+//    {
+//        
+//    }
+//    
+//    override func keyUp(with event: NSEvent)
+//    {
+//        
+//    }
 
 }
 #endif

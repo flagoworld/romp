@@ -8,18 +8,27 @@
 
 import SpriteKit
 
-class SelectionBox {
+class SelectionBox: Equatable {
 
+    
+    let scene: SKScene
+    var node: SKSpriteNode
+    
     let topLeftHandle = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
     let topRightHandle = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
     let bottomRightHandle = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
     let bottomLeftHandle = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
     let outline = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
     
-    var selectedNode: SKSpriteNode? = nil
     var grabAnchorPoint: CGPoint? = nil
     
-    init() {
+    init(scene: SKScene, node: SKSpriteNode) {
+    
+        self.scene = scene
+        self.node = node
+        
+        addToScene()
+        redrawSelection()
     
         topLeftHandle.fillColor = NSColor.red
         topLeftHandle.zPosition = 2
@@ -44,40 +53,24 @@ class SelectionBox {
     
     }
     
-    func setSelectedNode(_ node: SKSpriteNode?) {
+    deinit {
     
-        selectedNode = node
-    
-        if let node = node {
-        
-            topLeftHandle.position = CGPoint(x: node.position.x - (node.size.width / 2), y: node.position.y + (node.size.height / 2))
-            topRightHandle.position = CGPoint(x: node.position.x + (node.size.width / 2), y: node.position.y + (node.size.height / 2))
-            bottomRightHandle.position = CGPoint(x: node.position.x + (node.size.width / 2), y: node.position.y - (node.size.height / 2))
-            bottomLeftHandle.position = CGPoint(x: node.position.x - (node.size.width / 2), y: node.position.y - (node.size.height / 2))
-            
-            outline.path = CGPath(rect: node.frame, transform: nil)
-            
-            setHidden(false)
-        
-        } else {
-        
-            setHidden(true)
-        
-        }
+        removeFromScene()
     
     }
     
-    func setHidden(_ hidden: Bool) {
+    func redrawSelection() {
     
-        topLeftHandle.isHidden = hidden
-        topRightHandle.isHidden = hidden
-        bottomRightHandle.isHidden = hidden
-        bottomLeftHandle.isHidden = hidden
-        outline.isHidden = hidden
+        topLeftHandle.position = CGPoint(x: node.position.x - (node.size.width / 2), y: node.position.y + (node.size.height / 2))
+        topRightHandle.position = CGPoint(x: node.position.x + (node.size.width / 2), y: node.position.y + (node.size.height / 2))
+        bottomRightHandle.position = CGPoint(x: node.position.x + (node.size.width / 2), y: node.position.y - (node.size.height / 2))
+        bottomLeftHandle.position = CGPoint(x: node.position.x - (node.size.width / 2), y: node.position.y - (node.size.height / 2))
+        
+        outline.path = CGPath(rect: node.frame, transform: nil)
     
     }
     
-    func addToScene(_ scene: SKScene) {
+    private func addToScene() {
     
         scene.addChild(topLeftHandle)
         scene.addChild(topRightHandle)
@@ -87,13 +80,17 @@ class SelectionBox {
     
     }
     
-    func grabHandle(_ mouseLocation: CGPoint) -> Bool {
+    private func removeFromScene() {
     
-        if selectedNode == nil {
-        
-            return false
-        
-        }
+        topLeftHandle.removeFromParent()
+        topRightHandle.removeFromParent()
+        bottomRightHandle.removeFromParent()
+        bottomLeftHandle.removeFromParent()
+        outline.removeFromParent()
+    
+    }
+    
+    func grabHandle(_ mouseLocation: CGPoint) -> Bool {
     
         if topLeftHandle.contains(mouseLocation) {
         
@@ -125,14 +122,14 @@ class SelectionBox {
     
     func moveHandle(_ mouseLocation: CGPoint) -> Bool {
     
-        if selectedNode != nil && grabAnchorPoint != nil {
+        if grabAnchorPoint != nil {
         
             let newFrame = CGRect(x: grabAnchorPoint!.x, y: grabAnchorPoint!.y, width: 0, height: 0).union(CGRect(x: mouseLocation.x, y: mouseLocation.y, width: 0, height: 0))
             
-            selectedNode!.size = newFrame.size
-            selectedNode!.position = CGPoint(x: newFrame.midX, y: newFrame.midY)
+            node.size = newFrame.size
+            node.position = CGPoint(x: newFrame.midX, y: newFrame.midY)
             
-            setSelectedNode(selectedNode)
+            redrawSelection()
             
             return true
         
@@ -146,6 +143,14 @@ class SelectionBox {
     
         grabAnchorPoint = nil
     
+    }
+    
+    // MARK: Equatable
+    
+    static func ==(lhs: SelectionBox, rhs: SelectionBox) -> Bool {
+    
+        return lhs === rhs
+        
     }
 
 }

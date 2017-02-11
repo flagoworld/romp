@@ -44,14 +44,22 @@ class Game: EventSubscriber {
     
     func handleEvent(_ event: Event) {
     
-        if let spawnEvent = event as? SpawnEvent {
+        switch event {
         
+        case let spawnEvent as SpawnEvent:
             entities.append(spawnEvent.entity)
-            
             componentSystems.editable.addComponent(foundIn: spawnEvent.entity)
             componentSystems.sprite.addComponent(foundIn: spawnEvent.entity)
         
+        case let destroyEvent as DestroyEvent:
+            entities.remove(at: entities.index(of: destroyEvent.entity)!)
+            componentSystems.sprite.removeComponent(foundIn: destroyEvent.entity)
+            componentSystems.editable.removeComponent(foundIn: destroyEvent.entity)
+        
+        default: break
+        
         }
-    
+        
     }
+    
 }

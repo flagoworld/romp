@@ -13,7 +13,7 @@ import GameplayKit
 protocol EditorUIDelegate {
 
     // Editing
-    func editorUIEditingModeChanged(editingMode: EditingMode)
+    func editorUIStateChanged(stateClass: GKState.Type)
     
     func editorUIEditingTileChanged(tile: Bool)
     
@@ -170,14 +170,17 @@ class Editor: UserInterface, NSCollectionViewDelegate, NSCollectionViewDataSourc
     
     func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
     
-        if tabView.indexOfTabViewItem(tabViewItem!) == 1 {
+        switch tabView.indexOfTabViewItem(tabViewItem!) {
         
-            delegate?.editorUIEditingModeChanged(editingMode: ( .add ))
-            
-        } else {
-            
-            delegate?.editorUIEditingModeChanged(editingMode: ( .edit ))
-            
+        case 1:
+            delegate?.editorUIStateChanged(stateClass: EditorStateObject.self)
+        
+        case 2:
+            delegate?.editorUIStateChanged(stateClass: EditorStateAdd.self)
+        
+        default:
+            delegate?.editorUIStateChanged(stateClass: EditorStateMap.self)
+        
         }
         
     }
