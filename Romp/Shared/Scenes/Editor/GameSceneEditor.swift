@@ -15,9 +15,6 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
     var selectedEntities: [GKEntity] = []
     var selectionBoxes: [SelectionBox] = []
     
-    var mouseDownEvent: MouseEvent = MouseEvent(action: .down, buttons: [ .left ], modifiers: MouseEventModifiers(), location: CGPoint.zero)
-    var mouseDragged: Bool = false
-    
     // TODO: This will be resources or object definitions, loaded from a json file
     var resources: [Resource]?
     
@@ -79,8 +76,9 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
     
         super.handleEvent(event)
         
-        if let destroyEvent = event as? DestroyEvent {
+        switch event {
         
+        case let destroyEvent as DestroyEvent:
             for selectionBox in selectionBoxes {
             
                 if selectionBox.node == destroyEvent.entity.component(ofType: Sprite.self)?.node {
@@ -93,32 +91,21 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
             
             selectedEntities.remove(at: selectedEntities.index(of: destroyEvent.entity)!)
         
+        case let keyEvent as KeyEvent:
+            
+            // TODO: Wrap NSDeleteCharacter since it's only present in macOS
+            if keyEvent.keyCode == UnicodeScalar(NSDeleteCharacter) {
+            
+                removeSelectedEntities()
+            
+            }
+        
+        default: break
+        
         }
     
     }
     
-    
-// MARK: Mouse input
-    
-    func mouseDownEvent(mouseEvent: MouseEvent) {
-        
-        mouseDownEvent = mouseEvent
-        
-    }
-    
-    func mouseDragEvent(mouseEvent: MouseEvent) {
-    
-        mouseDragged = true
-        
-    }
-    
-    func mouseUpEvent(mouseEvent: MouseEvent) {
-    
-        // Clear previous mouse info
-        mouseDownEvent = MouseEvent(action: .down, buttons: .left, modifiers: MouseEventModifiers(), location: CGPoint.zero)
-        mouseDragged = false
-        
-    }
     
 // MARK: EditorUIDelegate
 
@@ -150,27 +137,6 @@ class GameSceneEditor: GameScene, EditorUIDelegate {
         
         self.selectedEntities.first!.component(ofType: Sprite.self)!.setRepeating(tile)
         
-    }
-    
-    
-    
-    
-    
-    
-    // todo: use KeyEvent
-    
-    override func keyDown(with event: NSEvent)
-    {
-        let s   =   event.charactersIgnoringModifiers!
-        let s1  =   s.unicodeScalars
-        let s2  =   s1[s1.startIndex].value
-        let s3  =   Int(s2)
-        
-        if s3 == NSDeleteCharacter {
-        
-            removeSelectedEntities()
-        
-        }
     }
 
 }

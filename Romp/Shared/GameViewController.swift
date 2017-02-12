@@ -41,6 +41,8 @@ class GameViewController: ViewController, EventSubscriber {
     
         if let sceneEvent = event as? SceneEvent {
         
+            self.view.nextResponder = self
+            
             let skView = self.view as! SKView
             
             let scene = sceneEvent.sceneClass.init(game: game)

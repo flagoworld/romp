@@ -125,6 +125,8 @@ class Scene: SKScene, EventSubscriber {
 // Mouse events
 extension Scene {
 
+    override var acceptsFirstResponder: Bool { return true }
+
     override open func mouseDown(with event: NSEvent) {
     
         let button = mouseButton(NSEvent.pressedMouseButtons())
@@ -132,6 +134,8 @@ extension Scene {
         let mouseEvent = MouseEvent(action: .down, buttons: button, modifiers: modifiers, location: event.location(in: self.scene!))
         
         game.eventCenter.send(mouseEvent)
+        
+        self.view?.window?.makeFirstResponder(self)
         
     }
     
@@ -217,15 +221,14 @@ extension Scene {
     
     }
     
-//    override func keyDown(with event: NSEvent)
-//    {
-//        
-//    }
-//    
-//    override func keyUp(with event: NSEvent)
-//    {
-//        
-//    }
+    override func keyDown(with event: NSEvent) {
+    
+        let chars   =   event.charactersIgnoringModifiers!
+        let scalars  =   chars.unicodeScalars
+    
+        game.eventCenter.send(KeyEvent(scalars[scalars.startIndex]))
+    
+    }
 
 }
 #endif

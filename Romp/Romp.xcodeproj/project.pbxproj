@@ -93,6 +93,9 @@
 		A486C89E1E4F895B00D1B34B /* DestroyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C89D1E4F895B00D1B34B /* DestroyEvent.swift */; };
 		A486C89F1E4F895B00D1B34B /* DestroyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C89D1E4F895B00D1B34B /* DestroyEvent.swift */; };
 		A486C8A01E4F895B00D1B34B /* DestroyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C89D1E4F895B00D1B34B /* DestroyEvent.swift */; };
+		A486C8AB1E50DE0D00D1B34B /* KeyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C8AA1E50DE0D00D1B34B /* KeyEvent.swift */; };
+		A486C8AC1E50DE0D00D1B34B /* KeyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C8AA1E50DE0D00D1B34B /* KeyEvent.swift */; };
+		A486C8AD1E50DE0D00D1B34B /* KeyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A486C8AA1E50DE0D00D1B34B /* KeyEvent.swift */; };
 		A4DE5AAD1E3D14E8003069F2 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DE5AAC1E3D14E8003069F2 /* Editable.swift */; };
 		A4DE5AAE1E3D2564003069F2 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DE5AAC1E3D14E8003069F2 /* Editable.swift */; };
 		A4DE5AAF1E3D2564003069F2 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DE5AAC1E3D14E8003069F2 /* Editable.swift */; };
@@ -171,6 +174,7 @@
 		A486C8951E4E546700D1B34B /* EditorStateAdd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorStateAdd.swift; path = States/Editor/EditorStateAdd.swift; sourceTree = "<group>"; };
 		A486C8991E4E586600D1B34B /* EditorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorState.swift; path = States/Editor/EditorState.swift; sourceTree = "<group>"; };
 		A486C89D1E4F895B00D1B34B /* DestroyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestroyEvent.swift; sourceTree = "<group>"; };
+		A486C8AA1E50DE0D00D1B34B /* KeyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyEvent.swift; sourceTree = "<group>"; };
 		A4DE5AAC1E3D14E8003069F2 /* Editable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Editable.swift; path = Components/Editable.swift; sourceTree = "<group>"; };
 		A4DE5AC01E3D30F7003069F2 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		A4DE5AEE1E3DA995003069F2 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
@@ -239,6 +243,7 @@
 				A44967931E3E99B60001D4B6 /* EventCenter.swift */,
 				A44967921E3E99B60001D4B6 /* Event.swift */,
 				A44967941E3E99B60001D4B6 /* MouseEvent.swift */,
+				A486C8AA1E50DE0D00D1B34B /* KeyEvent.swift */,
 				A478A4E01E41981200BF9887 /* SpawnEvent.swift */,
 				A486C89D1E4F895B00D1B34B /* DestroyEvent.swift */,
 				A478A4E41E41C6BB00BF9887 /* SceneEvent.swift */,
@@ -542,6 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A486C8AB1E50DE0D00D1B34B /* KeyEvent.swift in Sources */,
 				A40F71211E40396C002B72B6 /* GameScene.swift in Sources */,
 				A486C8921E4E545300D1B34B /* EditorStateObject.swift in Sources */,
 				A44967981E3E99B60001D4B6 /* EventCenter.swift in Sources */,
@@ -576,6 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A486C8AC1E50DE0D00D1B34B /* KeyEvent.swift in Sources */,
 				A40F71221E40396C002B72B6 /* GameScene.swift in Sources */,
 				A486C8931E4E545300D1B34B /* EditorStateObject.swift in Sources */,
 				A44967991E3E99B60001D4B6 /* EventCenter.swift in Sources */,
@@ -614,6 +621,7 @@
 				A449679A1E3E99B60001D4B6 /* EventCenter.swift in Sources */,
 				A4DE5AB71E3D256A003069F2 /* InputControl.swift in Sources */,
 				A478A4E71E41C6BB00BF9887 /* SceneEvent.swift in Sources */,
+				A486C8AD1E50DE0D00D1B34B /* KeyEvent.swift in Sources */,
 				A441CB211E4572D000D7144C /* Editor.swift in Sources */,
 				A4DE5AB91E3D256A003069F2 /* Sprite.swift in Sources */,
 				A478A4E31E41981200BF9887 /* SpawnEvent.swift in Sources */,
